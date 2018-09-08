@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="/js/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>【react navigation】十一、导航器嵌套使用的一些注意事项 | King的技术小栈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="每个页面都可以配置来决定它在导航器中的呈现方式。在基础文档的配置标题栏部分，我们介绍了它的工作原理。 在本文档中，我们将会解释当有多个导航器一起使用时它是如何工作的。看完该章节，你将学习到如何将navigationOptions放在正确的位置，并确保可以正确的配置导航器。如果你把它们放在错误的地方，有可能什么都不会发生，但也可能会发生令人困惑和意外的事情。值得庆幸的是，以下的环节理解起来相对比较简">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【React Navigation】十一、导航器嵌套使用的一些注意事项">
+<meta property="og:url" content="http://yoursite.com/2018/08/29/【React-Navigation】十一、导航器嵌套使用的一些注意事项/index.html">
+<meta property="og:site_name" content="King的技术小栈">
+<meta property="og:description" content="每个页面都可以配置来决定它在导航器中的呈现方式。在基础文档的配置标题栏部分，我们介绍了它的工作原理。 在本文档中，我们将会解释当有多个导航器一起使用时它是如何工作的。看完该章节，你将学习到如何将navigationOptions放在正确的位置，并确保可以正确的配置导航器。如果你把它们放在错误的地方，有可能什么都不会发生，但也可能会发生令人困惑和意外的事情。值得庆幸的是，以下的环节理解起来相对比较简">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-31T02:00:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【React Navigation】十一、导航器嵌套使用的一些注意事项">
+<meta name="twitter:description" content="每个页面都可以配置来决定它在导航器中的呈现方式。在基础文档的配置标题栏部分，我们介绍了它的工作原理。 在本文档中，我们将会解释当有多个导航器一起使用时它是如何工作的。看完该章节，你将学习到如何将navigationOptions放在正确的位置，并确保可以正确的配置导航器。如果你把它们放在错误的地方，有可能什么都不会发生，但也可能会发生令人困惑和意外的事情。值得庆幸的是，以下的环节理解起来相对比较简">
+  
+    <link rel="alternate" href="/atom.xml" title="King的技术小栈" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/logo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+</head>
+
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src=" /css/images/logo.jpg">
+              </a>
+            
+          </h1>
+
+          
+            <div class="site-description">勤靡余劳，心有常闲</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/logo.jpg,css/images/background-cover.jpg".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-【React-Navigation】十一、导航器嵌套使用的一些注意事项" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      【React Navigation】十一、导航器嵌套使用的一些注意事项
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/08/29/【React-Navigation】十一、导航器嵌套使用的一些注意事项/" class="article-date">
+	  <time datetime="2018-08-29T06:09:34.000Z" itemprop="datePublished">August 29, 2018</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>每个页面都可以配置来决定它在导航器中的呈现方式。在基础文档的配置标题栏部分，我们介绍了它的工作原理。</p>
+<p>在本文档中，我们将会解释当有多个导航器一起使用时它是如何工作的。看完该章节，你将学习到如何将navigationOptions放在正确的位置，并确保可以正确的配置导航器。如果你把它们放在错误的地方，有可能什么都不会发生，但也可能会发生令人困惑和意外的事情。值得庆幸的是，以下的环节理解起来相对比较简单。</p>
+<p><em>只能从导航器的某个屏幕组件来修改它的导航选项。这同样适用于导航器嵌套使用的情况</em></p>
+<p>试想这样的一种情形：一个选项卡导航器，导航器的每个tab又包含了一个堆栈导航器。假如我们在堆栈导航器的某个屏幕配置navigationOptions，会产生什么效果？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class A extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    tabBarLabel: &apos;Home!&apos;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  // etc..</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    tabBarLabel: &apos;Settings!&apos;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  // etc..</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let HomeStack = createStackNavigator(&#123; A &#125;);</span><br><span class="line">let SettingsStack = createStackNavigator(&#123; B &#125;);</span><br><span class="line"></span><br><span class="line">export default createBottomTabNavigator(&#123;</span><br><span class="line">  HomeStack,</span><br><span class="line">  SettingsStack,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>正如我们上边提到的：只能从导航器的某个屏幕组件来修改它的导航选项。上边代码中的A和B是分别属于HomeStack和SettingStack的屏幕组件，而不是属于选项卡导航器的屏幕组件。因此，当我们在A和B配置tabBarLabel属性时，在选项卡导航器上是没有任何效果的。我们将代码稍作修改，来达到我们想要的效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; View, Text &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">  createStackNavigator,</span><br><span class="line">  createBottomTabNavigator,</span><br><span class="line">&#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">const Placeholder = (&#123; text &#125;) =&gt; (</span><br><span class="line">  &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">    &lt;Text&gt;&#123;text&#125;&lt;/Text&gt;</span><br><span class="line">  &lt;/View&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">class A extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Placeholder text=&quot;A!&quot; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Placeholder text=&quot;B!&quot; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let HomeStack = createStackNavigator(&#123; A &#125;);</span><br><span class="line">let SettingsStack = createStackNavigator(&#123; B &#125;);</span><br><span class="line"></span><br><span class="line">HomeStack.navigationOptions = &#123;</span><br><span class="line">  tabBarLabel: &apos;Home!&apos;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">SettingsStack.navigationOptions = &#123;</span><br><span class="line">  tabBarLabel: &apos;Settings!&apos;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default createBottomTabNavigator(&#123;</span><br><span class="line">  HomeStack,</span><br><span class="line">  SettingsStack,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>为了弄清上边的逻辑，我们先回想以下的代码：MyComponent和MyOtherComponent两个组件的效果是一样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class MyComponent extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    title: &apos;Hello!&apos;,</span><br><span class="line">  &#125;;</span><br><span class="line">  // etc.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MyOtherComponent extends React.Component &#123;</span><br><span class="line">  // etc.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyOtherComponent.navigationOptions = &#123;</span><br><span class="line">  title: &apos;Hello!&apos;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>另外，我们也了解到，createStackNavigator函数和相关的一些函数是可以返回一个react组件的。因此，当HomeStack和SettingStack作为某个导航器的屏幕组件时，我们直接在HomeStack和SettingStack配置navigationOptions时，相当于我们控制了它父类导航器的navigationOptions。</p>
+<h3 id="堆栈导航器嵌套一个选项卡导航器，并希望设置堆栈导航器的title"><a href="#堆栈导航器嵌套一个选项卡导航器，并希望设置堆栈导航器的title" class="headerlink" title="堆栈导航器嵌套一个选项卡导航器，并希望设置堆栈导航器的title"></a>堆栈导航器嵌套一个选项卡导航器，并希望设置堆栈导航器的title</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const TabNavigator = createBottomTabNavigator(&#123;</span><br><span class="line">  Feed: FeedScreen,</span><br><span class="line">  Profile: ProfileScreen,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const AppNavigator = createStackNavigator(&#123;</span><br><span class="line">  Home: TabNavigator,</span><br><span class="line">  Settings: SettingsScreen,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>以上边的代码为例，假如我们在FeedScreen页面中，通过navigationOptions配置headerTitle属性，将不会达到我们想要的效果。因为AppNavigator堆栈导航器只会查找它的直接子屏幕(TabNavigator和SettingScreen)的配置。因此，为了设置AppNavigator的title，我们可以通过TabNavigator来它的headerTitle。如下方的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const TabNavigator = createBottomTabNavigator(&#123;</span><br><span class="line">  Feed: FeedScreen,</span><br><span class="line">  Profile: ProfileScreen,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">TabNavigator.navigationOptions = (&#123; navigation &#125;) =&gt; &#123;</span><br><span class="line">  let &#123; routeName &#125; = navigation.state.routes[navigation.state.index];</span><br><span class="line"></span><br><span class="line">  // You can do whatever you like here to pick the title based on the route name</span><br><span class="line">  let headerTitle = routeName;</span><br><span class="line"></span><br><span class="line">  return &#123;</span><br><span class="line">    headerTitle,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>还有另外一种情形：每个tab页面有自己的堆栈导航器，你可以选择当某个tab被选中时，隐藏顶层堆栈导航器的标题部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const FeedStack = createStackNavigator(&#123;</span><br><span class="line">  FeedHome: FeedScreen,</span><br><span class="line">  /* other routes here */</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const ProfileStack = createStackNavigator(&#123;</span><br><span class="line">  ProfileHome: ProfileScreen,</span><br><span class="line">  /* other routes here */</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const TabNavigator = createBottomTabNavigator(&#123;</span><br><span class="line">  Feed: FeedStack,</span><br><span class="line">  Profile: ProfileStack,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">TabNavigator.navigationOptions = &#123;</span><br><span class="line">  // Hide the header from AppNavigator stack</span><br><span class="line">  header: null,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const AppNavigator = createStackNavigator(&#123;</span><br><span class="line">  Home: TabNavigator,</span><br><span class="line">  Settings: SettingsScreen,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="选项卡导航器包含一个堆栈导航器，你希望在特殊的页面隐藏选项卡工具条"><a href="#选项卡导航器包含一个堆栈导航器，你希望在特殊的页面隐藏选项卡工具条" class="headerlink" title="选项卡导航器包含一个堆栈导航器，你希望在特殊的页面隐藏选项卡工具条"></a>选项卡导航器包含一个堆栈导航器，你希望在特殊的页面隐藏选项卡工具条</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const FeedStack = createStackNavigator(&#123;</span><br><span class="line">  FeedHome: FeedScreen,</span><br><span class="line">  Details: DetailsScreen,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const TabNavigator = createBottomTabNavigator(&#123;</span><br><span class="line">  Feed: FeedStack,</span><br><span class="line">  Profile: ProfileScreen,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>以上边的代码为例，假如希望当从feed页面跳转到detials页面时，将选项卡工具条隐藏。我们不能通过在DetailsScreen的navigationOptions中设置tabBarVisible：false这种写法来达到效果，因为这些配置只会作用于FeedStack。为了达到这个效果，我们需要按照以下这种写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; View, Text, TouchableHighlight &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">  createStackNavigator,</span><br><span class="line">  createBottomTabNavigator,</span><br><span class="line">&#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">const Placeholder = (&#123; text &#125;) =&gt; (</span><br><span class="line">  &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">    &lt;Text&gt;&#123;text&#125;&lt;/Text&gt;</span><br><span class="line">  &lt;/View&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">class FeedScreen extends React.Component &#123;</span><br><span class="line">	</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">		&lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">			&lt;TouchableHighlight onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Details&apos;)&#125;&gt;</span><br><span class="line">				&lt;Text&gt;go to Details&lt;/Text&gt;</span><br><span class="line">			&lt;/TouchableHighlight&gt;</span><br><span class="line">			</span><br><span class="line">		&lt;/View&gt;</span><br><span class="line">	);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">FeedScreen.navigationOptions = &#123;</span><br><span class="line">	title: &quot;FeedScreen&quot;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Placeholder text=&quot;DetailsScreen!&quot; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">DetailsScreen.navigationOptions = &#123;</span><br><span class="line">	title: &quot;DetailsScreen&quot;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class ProfileScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Placeholder text=&quot;ProfileScreen!&quot; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const FeedStack = createStackNavigator(&#123;</span><br><span class="line">  FeedHome: FeedScreen,</span><br><span class="line">  Details: DetailsScreen,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default createBottomTabNavigator(&#123;</span><br><span class="line">  Feed: FeedStack,</span><br><span class="line">  Profile: ProfileScreen,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">FeedStack.navigationOptions = (&#123; navigation &#125;) =&gt; &#123;</span><br><span class="line">  let tabBarVisible = true;</span><br><span class="line">  if (navigation.state.index &gt; 0) &#123;</span><br><span class="line">    tabBarVisible = false;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return &#123;</span><br><span class="line">    tabBarVisible,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="抽屉里面有一个堆栈导航器，你希望在某些特定屏幕上锁定抽屉功能"><a href="#抽屉里面有一个堆栈导航器，你希望在某些特定屏幕上锁定抽屉功能" class="headerlink" title="抽屉里面有一个堆栈导航器，你希望在某些特定屏幕上锁定抽屉功能"></a>抽屉里面有一个堆栈导航器，你希望在某些特定屏幕上锁定抽屉功能</h3><p>这与上一小节比较类似，上一小节是在特定的屏幕隐藏选项卡工具条，而这一小节是在特定的屏幕锁定抽屉功能，使用的是drawerLockMode属性而不是tabBarVisible属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const FeedStack = createStackNavigator(&#123;</span><br><span class="line">  FeedHome: FeedScreen,</span><br><span class="line">  Details: DetailsScreen,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const DrawerNavigator = createDrawerNavigator(&#123;</span><br><span class="line">  Feed: FeedStack,</span><br><span class="line">  Profile: ProfileScreen,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>为了实当我们跳转到Details页面时将抽屉隐藏的效果。我们需要在FeedStack中配置navigationOptions，因为假如我们在DetailsScreen中配置navigationOptions ，它将直接作用于它的父类导航器FeedStack，而不是抽屉导航器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; View, Text, TouchableHighlight &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">  createStackNavigator,</span><br><span class="line">  createBottomTabNavigator,</span><br><span class="line">  createDrawerNavigator,</span><br><span class="line">&#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">const Placeholder = (&#123; text &#125;) =&gt; (</span><br><span class="line">  &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">    &lt;Text&gt;&#123;text&#125;&lt;/Text&gt;</span><br><span class="line">  &lt;/View&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">class FeedScreen extends React.Component &#123;</span><br><span class="line">	</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">		&lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">			&lt;TouchableHighlight onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Details&apos;)&#125;&gt;</span><br><span class="line">				&lt;Text&gt;go to Details&lt;/Text&gt;</span><br><span class="line">			&lt;/TouchableHighlight&gt;</span><br><span class="line">			</span><br><span class="line">		&lt;/View&gt;</span><br><span class="line">	);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">FeedScreen.navigationOptions = &#123;</span><br><span class="line">	title: &quot;FeedScreen&quot;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Placeholder text=&quot;DetailsScreen!&quot; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">DetailsScreen.navigationOptions = &#123;</span><br><span class="line">	title: &quot;DetailsScreen&quot;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class ProfileScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Placeholder text=&quot;ProfileScreen!&quot; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const FeedStack = createStackNavigator(&#123;</span><br><span class="line">  FeedHome: FeedScreen,</span><br><span class="line">  Details: DetailsScreen,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default createDrawerNavigator(&#123;</span><br><span class="line">  Feed: FeedStack,</span><br><span class="line">  Profile: ProfileScreen,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">FeedStack.navigationOptions = (&#123; navigation &#125;) =&gt; &#123;</span><br><span class="line">  let drawerLockMode = &apos;unlocked&apos;;</span><br><span class="line">  if (navigation.state.index &gt; 0) &#123;</span><br><span class="line">    drawerLockMode = &apos;locked-closed&apos;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return &#123;</span><br><span class="line">    drawerLockMode,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
+
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/29/【React-Navigation】十二、自定义Android返回键的行为/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          【React Navigation】十二、自定义Android返回键的行为
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/29/【React-Navigation】十、沉浸式状态栏/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【React Navigation】十、沉浸式状态栏</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#堆栈导航器嵌套一个选项卡导航器，并希望设置堆栈导航器的title"><span class="nav-number">1.</span> <span class="nav-text">堆栈导航器嵌套一个选项卡导航器，并希望设置堆栈导航器的title</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项卡导航器包含一个堆栈导航器，你希望在特殊的页面隐藏选项卡工具条"><span class="nav-number">2.</span> <span class="nav-text">选项卡导航器包含一个堆栈导航器，你希望在特殊的页面隐藏选项卡工具条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽屉里面有一个堆栈导航器，你希望在某些特定屏幕上锁定抽屉功能"><span class="nav-number">3.</span> <span class="nav-text">抽屉里面有一个堆栈导航器，你希望在某些特定屏幕上锁定抽屉功能</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 King的技术小栈 All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

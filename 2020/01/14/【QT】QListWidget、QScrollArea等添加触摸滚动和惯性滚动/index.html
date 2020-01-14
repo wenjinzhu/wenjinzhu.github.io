@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="/js/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>【qt】qlistwidget、qscrollarea等添加触摸滚动和惯性滚动 | King的技术小栈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="前言平时使用QListWidget/QScrollArea等内容视图可以滚动的控件时，一般是通过它们的滚动条来实现滚动的。在智慧课堂项目中，实施的学校使用的是一体机–window系统可触摸的大屏。当然也可以通过滚动条来拖动，但这对于习惯于手机触摸交互的用户来说，操作起来是很不友好的。因此，需要让这些控件支持触摸滚动。主要的实现方式有两种：  通过自定义控件，子类化这些滚动控件，重新实现它们的mou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【QT】QListWidget、QScrollArea等添加触摸滚动和惯性滚动">
+<meta property="og:url" content="http://yoursite.com/2020/01/14/【QT】QListWidget、QScrollArea等添加触摸滚动和惯性滚动/index.html">
+<meta property="og:site_name" content="King的技术小栈">
+<meta property="og:description" content="前言平时使用QListWidget/QScrollArea等内容视图可以滚动的控件时，一般是通过它们的滚动条来实现滚动的。在智慧课堂项目中，实施的学校使用的是一体机–window系统可触摸的大屏。当然也可以通过滚动条来拖动，但这对于习惯于手机触摸交互的用户来说，操作起来是很不友好的。因此，需要让这些控件支持触摸滚动。主要的实现方式有两种：  通过自定义控件，子类化这些滚动控件，重新实现它们的mou">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-01-14T06:26:42.850Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【QT】QListWidget、QScrollArea等添加触摸滚动和惯性滚动">
+<meta name="twitter:description" content="前言平时使用QListWidget/QScrollArea等内容视图可以滚动的控件时，一般是通过它们的滚动条来实现滚动的。在智慧课堂项目中，实施的学校使用的是一体机–window系统可触摸的大屏。当然也可以通过滚动条来拖动，但这对于习惯于手机触摸交互的用户来说，操作起来是很不友好的。因此，需要让这些控件支持触摸滚动。主要的实现方式有两种：  通过自定义控件，子类化这些滚动控件，重新实现它们的mou">
+  
+    <link rel="alternate" href="/atom.xml" title="King的技术小栈" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/logo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+</head>
+
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src=" /css/images/logo.jpg">
+              </a>
+            
+          </h1>
+
+          
+            <div class="site-description">勤靡余劳，心有常闲</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/logo.jpg,css/images/background-cover.jpg".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-【QT】QListWidget、QScrollArea等添加触摸滚动和惯性滚动" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      【QT】QListWidget、QScrollArea等添加触摸滚动和惯性滚动
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/01/14/【QT】QListWidget、QScrollArea等添加触摸滚动和惯性滚动/" class="article-date">
+	  <time datetime="2020-01-14T05:46:53.000Z" itemprop="datePublished">January 14, 2020</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>平时使用QListWidget/QScrollArea等内容视图可以滚动的控件时，一般是通过它们的滚动条来实现滚动的。在智慧课堂项目中，实施的学校使用的是一体机–window系统可触摸的大屏。当然也可以通过滚动条来拖动，但这对于习惯于手机触摸交互的用户来说，操作起来是很不友好的。因此，需要让这些控件支持触摸滚动。主要的实现方式有两种：</p>
+<ol>
+<li>通过自定义控件，子类化这些滚动控件，重新实现它们的mousePressEvent、mouseMoveEvent和mouseReleaseEvent等事件处理函数</li>
+<li>通过使用QScroller</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>下边以QListWidget为例，展示如何实现QListWidget的触摸滚动：</p>
+<p>方式一：</p>
+<ol>
+<li>创建一个MyListWidget，基类为QListWidget</li>
+<li>添加mousePressEvent、mouseMoveEvent和mouseReleaseEvent三个函数的声明</li>
+<li>通过动态改变horizontalScrollBar()-&gt;setValue、verticalScrollBar()-&gt;setValue实现横向和垂直的滚动</li>
+</ol>
+<p>方式二：</p>
+<ol>
+<li>调用setVerticalScrollMode、setHorizontalScrollMode，将滚动模式设置为ScrollPerPixel</li>
+<li>调用QScroller的静态函数grabGesture</li>
+</ol>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><p>方式一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">// 头文件</span><br><span class="line">class MyListWidget : public QListWidget</span><br><span class="line">&#123;</span><br><span class="line">	Q_OBJECT</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">	explicit MyListWidget(QWidget *parent);</span><br><span class="line">	~MyListWidget();</span><br><span class="line"></span><br><span class="line">protected:</span><br><span class="line">	void mousePressEvent(QMouseEvent *ev) Q_DECL_OVERRIDE;</span><br><span class="line">	void mouseMoveEvent(QMouseEvent *ev) Q_DECL_OVERRIDE;</span><br><span class="line">	void mouseReleaseEvent(QMouseEvent *ev) Q_DECL_OVERRIDE;</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">	bool m_pressed;</span><br><span class="line">	QPoint m_lastPoint;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// cpp文件</span><br><span class="line">MyListWidget::MyListWidget(QWidget *parent)</span><br><span class="line">	: QListWidget(parent)</span><br><span class="line">	, m_pressed(false)</span><br><span class="line">&#123;</span><br><span class="line">	setAttribute(Qt::WA_TranslucentBackground);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyListWidget::~MyListWidget()</span><br><span class="line">&#123;</span><br><span class="line">	//QScroller::ungrabGesture(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MyListWidget::mousePressEvent(QMouseEvent *ev)</span><br><span class="line">&#123;</span><br><span class="line">	m_pressed = true;</span><br><span class="line">	m_lastPoint = ev-&gt;pos();</span><br><span class="line">	QListWidget::mousePressEvent(ev);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MyListWidget::mouseMoveEvent(QMouseEvent *ev)</span><br><span class="line">&#123;</span><br><span class="line">	if (m_pressed)</span><br><span class="line">	&#123;</span><br><span class="line">		int horiDelta = ev-&gt;pos().x() - m_lastPoint.x();</span><br><span class="line">		int vertDelta = ev-&gt;pos().y() - m_lastPoint.y();</span><br><span class="line">		horizontalScrollBar()-&gt;setValue(horizontalScrollBar()-&gt;value() - horiDelta);</span><br><span class="line">		verticalScrollBar()-&gt;setValue(verticalScrollBar()-&gt;value() - vertDelta);</span><br><span class="line"></span><br><span class="line">		m_lastPoint = ev-&gt;pos();</span><br><span class="line">	&#125;</span><br><span class="line">	QListWidget::mouseMoveEvent(ev);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MyListWidget::mouseReleaseEvent(QMouseEvent *ev)</span><br><span class="line">&#123;</span><br><span class="line">	m_pressed = false;</span><br><span class="line">	QListWidget::mouseReleaseEvent(ev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方式二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 没看错，就是两句代码的事情</span><br><span class="line">ui.m_testListWidget-&gt;setVerticalScrollMode(QListWidget::ScrollPerPixel);</span><br><span class="line">QScroller::grabGesture(ui.m_testListWidget, QScroller::LeftMouseButtonGesture);</span><br></pre></td></tr></table></figure></p>
+<h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><ol>
+<li>推荐使用方式二，因为方式二除了能实现触摸滚动外，QScroller本身还做了滚动优化，支持惯性滚动：普通滚动（即实现方式一），当手指从触摸屏上移开，滚动立即停止；使用惯性滚动，当手指从触摸屏上移开，内容会保持一段时间的滚动效果，继续滚动的速度和持续的时间和滚动手势的强烈程度成正比</li>
+<li>QScroller手势识别器支持的不同手势类型，例如QScroller::TouchGesture、QScroller::LeftMouseButtonGesture等，由于一体机的触摸实现，本质是将触摸事件转换成了触摸事件，因此我上边的例子使用的是QScroller::LeftMouseButtonGesture，假如是移动设备，可以使用QScroller::TouchGesture</li>
+<li>使用QScroller，默认是使用了OvershootAlwaysOn，即滚动视图有个过冲回弹的效果，可以通过修改QScroller的属性禁止这个过冲效果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">QScroller::grabGesture(ui.m_testListWidget, QScroller::LeftMouseButtonGesture);</span><br><span class="line">QScrollerProperties propertiesOne = QScroller::scroller(ui.m_testListWidget)-&gt;scrollerProperties();</span><br><span class="line">QVariant overshootPolicyOne = QVariant::fromValue&lt;QScrollerProperties::OvershootPolicy&gt;(QScrollerProperties::OvershootAlwaysOff);</span><br><span class="line">propertiesOne.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, overshootPolicyOne);</span><br><span class="line">propertiesOne.setScrollMetric(QScrollerProperties::HorizontalOvershootPolicy, overshootPolicyOne);</span><br><span class="line">QScroller::scroller(ui.m_testListWidget)-&gt;setScrollerProperties(propertiesOne);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/QT/">QT</a>
+
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/14/【QT】动态添加-Horizontal-Line-和-Vertical-Line/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【QT】动态添加 Horizontal Line 和 Vertical Line</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体代码"><span class="nav-number">3.</span> <span class="nav-text">具体代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他补充"><span class="nav-number">4.</span> <span class="nav-text">其他补充</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 King的技术小栈 All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

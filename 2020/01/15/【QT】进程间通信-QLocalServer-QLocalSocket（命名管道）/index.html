@@ -13,23 +13,23 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>【qt】全局换肤 | King的技术小栈</title>
+  <title>【qt】进程间通信 -- qlocalserver/qlocalsocket（命名管道） | King的技术小栈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta name="description" content="前言给控件设置样式的方式常用的有两种：  在 QT Designer 中，选中需要设置样式的控件，右键–&amp;gt;改变样式表，即可以给控件设置样式 另外一种是在代码中动态设置，调用控件的setStyleSheet函数，为控件设置样式这两种方式都是针对单个控件的，假如需要对整个应用进行换肤呢？这时候可以使用.qss为后缀的文件进行统一设置  步骤 创建.qss文件 将需要实现换肤功能的控件的样式配置全">
+  <meta name="description" content="前言现在在逐步将项目中的功能块，这样子可以针对不同用户需求，灵活启用或卸载部分功能。目前，我们采用的方案是将功能打包成独立的exe，在启用时通过进程间通信进行交互。这里就涉及到进程间通信的技术，常用的技术有几种：  TCP/IP 共享内存 QProcess 命名管道这里主要介绍命名管道的使用  步骤QLocalServer（服务端）  创建QLocalServer 调用server的listen(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【QT】全局换肤">
-<meta property="og:url" content="http://yoursite.com/2020/01/15/【QT】全局换肤/index.html">
+<meta property="og:title" content="【QT】进程间通信 -- QLocalServer&#x2F;QLocalSocket（命名管道）">
+<meta property="og:url" content="http://yoursite.com/2020/01/15/【QT】进程间通信-QLocalServer-QLocalSocket（命名管道）/index.html">
 <meta property="og:site_name" content="King的技术小栈">
-<meta property="og:description" content="前言给控件设置样式的方式常用的有两种：  在 QT Designer 中，选中需要设置样式的控件，右键–&amp;gt;改变样式表，即可以给控件设置样式 另外一种是在代码中动态设置，调用控件的setStyleSheet函数，为控件设置样式这两种方式都是针对单个控件的，假如需要对整个应用进行换肤呢？这时候可以使用.qss为后缀的文件进行统一设置  步骤 创建.qss文件 将需要实现换肤功能的控件的样式配置全">
+<meta property="og:description" content="前言现在在逐步将项目中的功能块，这样子可以针对不同用户需求，灵活启用或卸载部分功能。目前，我们采用的方案是将功能打包成独立的exe，在启用时通过进程间通信进行交互。这里就涉及到进程间通信的技术，常用的技术有几种：  TCP/IP 共享内存 QProcess 命名管道这里主要介绍命名管道的使用  步骤QLocalServer（服务端）  创建QLocalServer 调用server的listen(">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-15T02:19:09.321Z">
+<meta property="og:updated_time" content="2020-01-15T03:02:42.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【QT】全局换肤">
-<meta name="twitter:description" content="前言给控件设置样式的方式常用的有两种：  在 QT Designer 中，选中需要设置样式的控件，右键–&amp;gt;改变样式表，即可以给控件设置样式 另外一种是在代码中动态设置，调用控件的setStyleSheet函数，为控件设置样式这两种方式都是针对单个控件的，假如需要对整个应用进行换肤呢？这时候可以使用.qss为后缀的文件进行统一设置  步骤 创建.qss文件 将需要实现换肤功能的控件的样式配置全">
+<meta name="twitter:title" content="【QT】进程间通信 -- QLocalServer&#x2F;QLocalSocket（命名管道）">
+<meta name="twitter:description" content="前言现在在逐步将项目中的功能块，这样子可以针对不同用户需求，灵活启用或卸载部分功能。目前，我们采用的方案是将功能打包成独立的exe，在启用时通过进程间通信进行交互。这里就涉及到进程间通信的技术，常用的技术有几种：  TCP/IP 共享内存 QProcess 命名管道这里主要介绍命名管道的使用  步骤QLocalServer（服务端）  创建QLocalServer 调用server的listen(">
   
     <link rel="alternate" href="/atom.xml" title="King的技术小栈" type="application/atom+xml">
   
@@ -153,7 +153,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-【QT】全局换肤" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-【QT】进程间通信-QLocalServer-QLocalSocket（命名管道）" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -161,7 +161,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      【QT】全局换肤
+      【QT】进程间通信 -- QLocalServer/QLocalSocket（命名管道）
     </h1>
   
 
@@ -169,8 +169,8 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/2020/01/15/【QT】全局换肤/" class="article-date">
-	  <time datetime="2020-01-15T02:05:46.000Z" itemprop="datePublished">January 15, 2020</time>
+	Posted on <a href="/2020/01/15/【QT】进程间通信-QLocalServer-QLocalSocket（命名管道）/" class="article-date">
+	  <time datetime="2020-01-15T02:37:55.000Z" itemprop="datePublished">January 15, 2020</time>
 	</a>
 
       
@@ -181,22 +181,28 @@ var themeMenus = {};
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>给控件设置样式的方式常用的有两种：</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>现在在逐步将项目中的功能块，这样子可以针对不同用户需求，灵活启用或卸载部分功能。目前，我们采用的方案是将功能打包成独立的exe，在启用时通过进程间通信进行交互。这里就涉及到进程间通信的技术，常用的技术有几种：</p>
 <ol>
-<li>在 QT Designer 中，选中需要设置样式的控件，右键–&gt;改变样式表，即可以给控件设置样式</li>
-<li>另外一种是在代码中动态设置，调用控件的setStyleSheet函数，为控件设置样式<br>这两种方式都是针对单个控件的，假如需要对整个应用进行换肤呢？这时候可以使用.qss为后缀的文件进行统一设置</li>
+<li>TCP/IP</li>
+<li>共享内存</li>
+<li>QProcess</li>
+<li>命名管道<br>这里主要介绍命名管道的使用</li>
 </ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
-<li>创建.qss文件</li>
-<li>将需要实现换肤功能的控件的样式配置全部写在该文件中</li>
-<li>在main函数中，调用QApplication的setStyleSheet函数，即可实现整体的换肤功能</li>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>QLocalServer（服务端）</p>
+<ol>
+<li>创建QLocalServer</li>
+<li>调用server的listen(“a specified key”)函数进行监听新的连接</li>
+<li>接收server发送的newConnection信号</li>
+<li>调用server的nextPendingConnection()函数来获取一个连接的QLocalSocket对象</li>
+<li>接收该QLocalSocket对象发射的三种信号进行业务处理：readyRead、socketError和disconnected</li>
 </ol>
-<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// 1. qss的部分示例</span><br><span class="line">QLabel#versionLabel</span><br><span class="line">&#123;</span><br><span class="line">    font-size:20px;</span><br><span class="line">    font-family:&quot;Microsoft YaHei&quot;;</span><br><span class="line">    font-weight:400;</span><br><span class="line">    color:rgba(51,51,51,1);</span><br><span class="line">&#125;</span><br><span class="line">QPushButton#okBtn, #cancelBtn, #perBtn</span><br><span class="line">&#123;</span><br><span class="line">    border: 1px solid #ababab;</span><br><span class="line">    border-radius: 18px;</span><br><span class="line">    background: transparent;</span><br><span class="line">    color: black;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">    font-family:&quot;Microsoft YaHei&quot;;</span><br><span class="line">&#125;</span><br><span class="line">QWidget#splashPage</span><br><span class="line">&#123;</span><br><span class="line">    background-image: url(./Resources/Image/ThemeOne/Splash.png);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 2. 换肤</span><br><span class="line">QApplication app;</span><br><span class="line">QFile file(BaseUtil::modulePath() + &quot;/Global.qss&quot;);</span><br><span class="line">if (file.open(QIODevice::ReadOnly))</span><br><span class="line">&#123;</span><br><span class="line">	QString theme(file.readAll());</span><br><span class="line">	app.setStyleSheet(theme);</span><br><span class="line">	file.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><ol>
-<li>在上边的例子中，我是将qss文件放在了程序的执行路径，你也可以选择将qss文件放到资源文件中</li>
-<li>要注意的是，放在资源中和放在程序外，样式中使用的图片路径是不一致的。例如上个例子中的background-image配置的路径方式是不同的</li>
+<p>QLocalSocket（客户端）</p>
+<ol>
+<li>创建QlocalSocket</li>
+<li>调用socket的connectToServer(“a specified key : 与上边server的key保持一致”)函数进行连接</li>
+<li>接收该socket发射的readyRead信号处理交互的数据</li>
 </ol>
-
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// 1. 服务端</span><br><span class="line">m_server = new QLocalServer(this);</span><br><span class="line">connect(m_server, SIGNAL(newConnection()), this, SLOT(newConnection()));</span><br><span class="line">m_server-&gt;listen(&quot;a specified key&quot;);</span><br><span class="line"></span><br><span class="line">void Server::newConnection()</span><br><span class="line">&#123;</span><br><span class="line">	QLocalSocket *socket = m_server-&gt;nextPendingConnection();</span><br><span class="line">	if ((nullptr != socket) &amp;&amp; (QAbstractSocket::ConnectedState == socket-&gt;state()))</span><br><span class="line">	&#123;</span><br><span class="line">		connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));</span><br><span class="line">		connect(socket, SIGNAL(error(QLocalSocket::LocalSocketError)), this, SLOT(socketError(QLocalSocket::LocalSocketError)));</span><br><span class="line">		connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Server::disconnected()</span><br><span class="line">&#123;</span><br><span class="line">	// 连接中断的业务处理</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Server::socketError(QLocalSocket::LocalSocketError error)</span><br><span class="line">&#123;</span><br><span class="line">	// 通信出错的业务处理</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Server::readyRead()</span><br><span class="line">&#123;</span><br><span class="line">	// 处理来自客户端的数据</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 2. 客户端</span><br><span class="line">m_socket = new QLocalSocket(this);</span><br><span class="line">connect(m_socket, SIGNAL(disconnected()), this, SIGNAL(disconnected()));</span><br><span class="line">connect(m_socket, SIGNAL(readyRead()), this, SLOT(readyRead()));</span><br><span class="line">m_socket-&gt;connectToServer(&quot;WisdomClassIPC&quot;);</span><br><span class="line"></span><br><span class="line">void IPCClient::readyRead()</span><br><span class="line">&#123;</span><br><span class="line">	// 处理来自服务端的数据</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -238,19 +244,10 @@ var themeMenus = {};
     
 <nav id="article-nav">
   
-    <a href="/2020/01/15/【QT】进程间通信-QLocalServer-QLocalSocket（命名管道）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          【QT】进程间通信 -- QLocalServer/QLocalSocket（命名管道）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/01/15/【QT】动态监测U盘插拔/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/01/15/【QT】全局换肤/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">【QT】动态监测U盘插拔</div>
+      <div class="article-nav-title">【QT】全局换肤</div>
     </a>
   
 </nav>
@@ -264,7 +261,7 @@ var themeMenus = {};
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体代码"><span class="nav-number">3.</span> <span class="nav-text">具体代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他补充"><span class="nav-number">4.</span> <span class="nav-text">其他补充</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体代码"><span class="nav-number">3.</span> <span class="nav-text">具体代码</span></a></li></ol>
     
     </div>
   </aside>

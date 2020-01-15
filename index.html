@@ -154,6 +154,73 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-【QT】进程间通信-QLocalServer-QLocalSocket（命名管道）"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/01/15/【QT】进程间通信-QLocalServer-QLocalSocket（命名管道）/">【QT】进程间通信 -- QLocalServer/QLocalSocket（命名管道）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/01/15/【QT】进程间通信-QLocalServer-QLocalSocket（命名管道）/" class="article-date">
+	  <time datetime="2020-01-15T02:37:55.000Z" itemprop="datePublished">January 15, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>现在在逐步将项目中的功能块，这样子可以针对不同用户需求，灵活启用或卸载部分功能。目前，我们采用的方案是将功能打包成独立的exe，在启用时通过进程间通信进行交互。这里就涉及到进程间通信的技术，常用的技术有几种：</p>
+<ol>
+<li>TCP/IP</li>
+<li>共享内存</li>
+<li>QProcess</li>
+<li>命名管道<br>这里主要介绍命名管道的使用</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>QLocalServer（服务端）</p>
+<ol>
+<li>创建QLocalServer</li>
+<li>调用server的listen(“a specified key”)函数进行监听新的连接</li>
+<li>接收server发送的newConnection信号</li>
+<li>调用server的nextPendingConnection()函数来获取一个连接的QLocalSocket对象</li>
+<li>接收该QLocalSocket对象发射的三种信号进行业务处理：readyRead、socketError和disconnected</li>
+</ol>
+<p>QLocalSocket（客户端）</p>
+<ol>
+<li>创建QlocalSocket</li>
+<li>调用socket的connectToServer(“a specified key : 与上边server的key保持一致”)函数进行连接</li>
+<li>接收该socket发射的readyRead信号处理交互的数据</li>
+</ol>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// 1. 服务端</span><br><span class="line">m_server = new QLocalServer(this);</span><br><span class="line">connect(m_server, SIGNAL(newConnection()), this, SLOT(newConnection()));</span><br><span class="line">m_server-&gt;listen(&quot;a specified key&quot;);</span><br><span class="line"></span><br><span class="line">void Server::newConnection()</span><br><span class="line">&#123;</span><br><span class="line">	QLocalSocket *socket = m_server-&gt;nextPendingConnection();</span><br><span class="line">	if ((nullptr != socket) &amp;&amp; (QAbstractSocket::ConnectedState == socket-&gt;state()))</span><br><span class="line">	&#123;</span><br><span class="line">		connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));</span><br><span class="line">		connect(socket, SIGNAL(error(QLocalSocket::LocalSocketError)), this, SLOT(socketError(QLocalSocket::LocalSocketError)));</span><br><span class="line">		connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Server::disconnected()</span><br><span class="line">&#123;</span><br><span class="line">	// 连接中断的业务处理</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Server::socketError(QLocalSocket::LocalSocketError error)</span><br><span class="line">&#123;</span><br><span class="line">	// 通信出错的业务处理</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Server::readyRead()</span><br><span class="line">&#123;</span><br><span class="line">	// 处理来自客户端的数据</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 2. 客户端</span><br><span class="line">m_socket = new QLocalSocket(this);</span><br><span class="line">connect(m_socket, SIGNAL(disconnected()), this, SIGNAL(disconnected()));</span><br><span class="line">connect(m_socket, SIGNAL(readyRead()), this, SLOT(readyRead()));</span><br><span class="line">m_socket-&gt;connectToServer(&quot;WisdomClassIPC&quot;);</span><br><span class="line"></span><br><span class="line">void IPCClient::readyRead()</span><br><span class="line">&#123;</span><br><span class="line">	// 处理来自服务端的数据</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/QT/">QT</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-【QT】全局换肤"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -701,65 +768,11 @@ var themeMenus = {};
     
 
   
-    <article id="post-【React-Navigation】十、沉浸式状态栏"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】十、沉浸式状态栏/">【React Navigation】十、沉浸式状态栏</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】十、沉浸式状态栏/" class="article-date">
-	  <time datetime="2018-08-29T06:08:50.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="堆栈导航器和抽屉导航器下的沉浸状态栏"><a href="#堆栈导航器和抽屉导航器下的沉浸状态栏" class="headerlink" title="堆栈导航器和抽屉导航器下的沉浸状态栏"></a>堆栈导航器和抽屉导航器下的沉浸状态栏</h3><p>在使用堆栈导航器和抽屉导航器下实现沉浸状态栏相对比较简单，你可以直接使用由React Native提供的StatusBar组件，并设置你的配置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">  SafeAreaView,</span><br><span class="line">  StatusBar,</span><br><span class="line">  Text,</span><br><span class="line">  Button,</span><br><span class="line">  StyleSheet</span><br><span class="line">&#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; createStackNavigator, createSwitchNavigator &#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">class Screen1 extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;SafeAreaView style=&#123;[styles.container, &#123; backgroundColor: &apos;#6a51ae&apos; &#125;]&#125;&gt;</span><br><span class="line">        &lt;StatusBar</span><br><span class="line">          barStyle=&quot;light-content&quot;</span><br><span class="line">          backgroundColor=&quot;#6a51ae&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Text style=&#123;[styles.paragraph, &#123; color: &apos;#fff&apos; &#125;]&#125;&gt;</span><br><span class="line">          Light Screen</span><br><span class="line">        &lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Next screen&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Screen2&apos;)&#125;</span><br><span class="line">          color=&#123;&quot;blue&quot;&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/SafeAreaView&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Screen2 extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;SafeAreaView style=&#123;[styles.container, &#123; backgroundColor: &apos;#ecf0f1&apos; &#125;]&#125;&gt;</span><br><span class="line">        &lt;StatusBar</span><br><span class="line">          barStyle=&quot;dark-content&quot;</span><br><span class="line">          backgroundColor=&quot;#ecf0f1&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.paragraph&#125;&gt;</span><br><span class="line">          Dark Screen</span><br><span class="line">        &lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Next screen&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Screen1&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/SafeAreaView&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default createStackNavigator(&#123;</span><br><span class="line">  Screen1: &#123;</span><br><span class="line">    screen: Screen1,</span><br><span class="line">  &#125;,</span><br><span class="line">  Screen2: &#123;</span><br><span class="line">    screen: Screen2,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  headerMode: &apos;none&apos;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: 1,</span><br><span class="line">    backgroundColor: &apos;#ecf0f1&apos;,</span><br><span class="line">    justifyContent: &apos;center&apos;,</span><br><span class="line">    alignItems: &apos;center&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">  paragraph: &#123;</span><br><span class="line">    fontSize: 18,</span><br><span class="line">    fontWeight: &apos;bold&apos;,</span><br><span class="line">    textAlign: &apos;center&apos;,</span><br><span class="line">    color: &apos;#34495e&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="选项卡导航器下的沉浸式导航器"><a href="#选项卡导航器下的沉浸式导航器" class="headerlink" title="选项卡导航器下的沉浸式导航器"></a>选项卡导航器下的沉浸式导航器</h3><p>在选项卡导航器上实现沉浸式状态栏，会相对复杂，因为所有选项卡的页面是同时渲染出来的 - 这意味着你可能只会看到最后一个StatusBar的配置效果。</p>
-<p>要解决这个问题，我们必须做两件事：</p>
-<ul>
-<li>仅在的初始页面上使用StatusBar组件,这可以确保在初始化时使用了正确的StatusBar配置</li>
-<li>利用React Navigation和StatusBar提供的事件，监听在选项卡变为可见时再动态调整StatusBar配置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">  SafeAreaView,</span><br><span class="line">  StatusBar,</span><br><span class="line">  Text,</span><br><span class="line">  Button,</span><br><span class="line">  StyleSheet,</span><br><span class="line">  Platform</span><br><span class="line">&#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; createStackNavigator, createSwitchNavigator, TabNavigator &#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">const isAndroid = Platform.OS === &apos;android&apos;;</span><br><span class="line"></span><br><span class="line">class Screen1 extends React.Component &#123;</span><br><span class="line">	</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this._navListener = this.props.navigation.addListener(&apos;didFocus&apos;, () =&gt; &#123;</span><br><span class="line">      StatusBar.setBarStyle(&apos;light-content&apos;);</span><br><span class="line">      isAndroid &amp;&amp; StatusBar.setBackgroundColor(&apos;#6a51ae&apos;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    this._navListener.remove();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;SafeAreaView style=&#123;[styles.container, &#123; backgroundColor: &apos;#6a51ae&apos; &#125;]&#125;&gt;</span><br><span class="line">        &lt;StatusBar</span><br><span class="line">          barStyle=&quot;light-content&quot;</span><br><span class="line">          backgroundColor=&quot;#6a51ae&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Text style=&#123;[styles.paragraph, &#123; color: &apos;#fff&apos; &#125;]&#125;&gt;</span><br><span class="line">          Light Screen</span><br><span class="line">        &lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Next screen&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Screen2&apos;)&#125;</span><br><span class="line">          color=&#123;&quot;blue&quot;&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/SafeAreaView&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Screen2 extends React.Component &#123;</span><br><span class="line">	</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this._navListener = this.props.navigation.addListener(&apos;didFocus&apos;, () =&gt; &#123;</span><br><span class="line">      StatusBar.setBarStyle(&apos;dark-content&apos;);</span><br><span class="line">      isAndroid &amp;&amp; StatusBar.setBackgroundColor(&apos;#ecf0f1&apos;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    this._navListener.remove();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;SafeAreaView style=&#123;[styles.container, &#123; backgroundColor: &apos;#ecf0f1&apos; &#125;]&#125;&gt;</span><br><span class="line">        &lt;StatusBar</span><br><span class="line">          barStyle=&quot;dark-content&quot;</span><br><span class="line">          backgroundColor=&quot;#ecf0f1&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.paragraph&#125;&gt;</span><br><span class="line">          Dark Screen</span><br><span class="line">        &lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Next screen&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Screen1&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/SafeAreaView&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> export default TabNavigator(&#123;</span><br><span class="line">   Screen1: &#123;</span><br><span class="line">     screen: Screen1,</span><br><span class="line">     navigationOptions: &#123;</span><br><span class="line">       tabBarOnPress: (&#123; previousScene, scene, jumpToIndex &#125;) =&gt; &#123;</span><br><span class="line">         // TODO: This doesn&apos;t handle the initial render because the second screen renders last. What to do?</span><br><span class="line">         StatusBar.setBarStyle(&apos;light-content&apos;);</span><br><span class="line">         isAndroid &amp;&amp; StatusBar.setBackgroundColor(&apos;#6a51ae&apos;);</span><br><span class="line">         jumpToIndex(scene.index);</span><br><span class="line">       &#125;,</span><br><span class="line">     &#125;,</span><br><span class="line">   &#125;,</span><br><span class="line">   Screen2: &#123;</span><br><span class="line">     screen: Screen2,</span><br><span class="line">     navigationOptions: &#123;</span><br><span class="line">       tabBarOnPress: (&#123; previousScene, scene, jumpToIndex &#125;) =&gt; &#123;</span><br><span class="line">         StatusBar.setBarStyle(&apos;dark-content&apos;);</span><br><span class="line">         isAndroid &amp;&amp; StatusBar.setBackgroundColor(&apos;#ecf0f1&apos;);</span><br><span class="line">         jumpToIndex(scene.index);</span><br><span class="line">       &#125;,</span><br><span class="line">     &#125;,</span><br><span class="line">   &#125;,</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: 1,</span><br><span class="line">    backgroundColor: &apos;#ecf0f1&apos;,</span><br><span class="line">    justifyContent: &apos;center&apos;,</span><br><span class="line">    alignItems: &apos;center&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">  paragraph: &#123;</span><br><span class="line">    fontSize: 18,</span><br><span class="line">    fontWeight: &apos;bold&apos;,</span><br><span class="line">    textAlign: &apos;center&apos;,</span><br><span class="line">    color: &apos;#34495e&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next</a>
   </nav>
 
 </section>
@@ -851,6 +864,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-QLocalServer-QLocalSocket（命名管道）/">【QT】进程间通信 -- QLocalServer/QLocalSocket（命名管道）</a></h6>
+              <span>January 15, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/01/15/【QT】全局换肤/">【QT】全局换肤</a></h6>
               <span>January 15, 2020</span>
             </div>
@@ -905,18 +930,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/08/29/【React-Navigation】完整例子/">【React Navigation】完整例子</a></h6>
-              <span>August 29, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -926,7 +939,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -937,7 +950,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

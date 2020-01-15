@@ -154,6 +154,72 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-【React-Navigation】二、createStackNavigator-堆栈导航器"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/08/29/【React-Navigation】二、createStackNavigator-堆栈导航器/">【React Navigation】二、createStackNavigator-堆栈导航器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/08/29/【React-Navigation】二、createStackNavigator-堆栈导航器/" class="article-date">
+	  <time datetime="2018-08-29T06:01:43.000Z" itemprop="datePublished">August 29, 2018</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Web浏览器中，你可以通过（<a>）标签跳转到不同的页面。当用户单击某个链接时，当前的URL将保存到到浏览器历史记录堆栈。当用户按下后退按钮时，浏览器会从历史堆栈的顶部弹出上一个访问的URL，因此可以切换回到先前访问过的页面。 React Native没有像Web浏览器那样内置全局历史堆栈的功能。</a></p>
+<p>而React Navigation则为您的应用提供了一种在屏幕切换和管理导航历史记录的方法。如果您的应用程序仅使用一个堆栈导航器，那么它在概念上类似于Web浏览器处理导航状态的方式 - 当用户与其交互时，您的应用程序会从导航堆栈中推送和弹出项目，这会导致用户看到不同的屏幕。但Web浏览器和React Navigation的主要区别在于：在切换不同的页面时，React Navigation的堆栈导航器实现了类似于原生（Android和iOS）的手势交互和动画效果。</p>
+<p>我们首先从React Navigation中一个名为createStackNavigator的函数开始着手。</p>
+<h3 id="创建一个堆栈导航器"><a href="#创建一个堆栈导航器" class="headerlink" title="创建一个堆栈导航器"></a>创建一个堆栈导航器</h3><p>因为createStackNavigator函数会返回一个React组件，我们可以直接App.js中使用它作为App的根组件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// In App.js in a new project</span><br><span class="line">// 在App.js中替换以上代码，然后运行</span><br><span class="line"></span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; View, Text &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; createStackNavigator &#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Home Screen&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default createStackNavigator(&#123;</span><br><span class="line">  Home: &#123;</span><br><span class="line">    screen: HomeScreen</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>当运行该程序，你可以看到整个页面中包含了一个空的导航条和一个包含了HomeScreen组件的灰色内容区域。这是堆栈导航器的默认风格，稍后的章节我们会学习如何去配置这些风格和样式。</p>
+<p><em>重点：</em><br><em>1. 路由名称不区分大小写</em><br><em>2. 每个路由必须配置screen组件</em></p>
+<p>我们还可以使用createStackNavigator函数将堆栈导航器保存成一个RootStack组件，作为我们的App.js中的跟组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const RootStack = createStackNavigator(&#123;</span><br><span class="line">  Home: &#123;</span><br><span class="line">    screen: HomeScreen</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;RootStack /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="路由的快速配置"><a href="#路由的快速配置" class="headerlink" title="路由的快速配置"></a>路由的快速配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 可以省略大括号</span><br><span class="line">const RootStack = createStackNavigator(&#123;</span><br><span class="line">  Home: HomeScreen</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="增加第二个路由"><a href="#增加第二个路由" class="headerlink" title="增加第二个路由"></a>增加第二个路由</h3><p><rootstack>组件没有配置其他的属性 - 所有配置都在createStackNavigator函数的options参数中指定。 我们将选项留空，因此它只使用默认配置。 为了查看使用options对象的示例，我们将向堆栈导航器添加第二个屏幕。</rootstack></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// Other code for HomeScreen here...</span><br><span class="line"></span><br><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Details Screen&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const RootStack = createStackNavigator(</span><br><span class="line">  &#123;</span><br><span class="line">    Home: HomeScreen,</span><br><span class="line">    Details: DetailsScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    initialRouteName: &apos;Home&apos;,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">// Other code for App component here...</span><br></pre></td></tr></table></figure>
+<p>现在导航器包含了两个路由：Home路由与HomeScreen组件关联，Details路由与DetailsScreen组件关联。我们使用Home路由作为程序初始化的路由。</p>
+<p>这时我们会自然想到一个问题：怎么从Home路由跳转到Details路由呢？我们将在下一个环节介绍。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>React Native没有提供像Web浏览器那样的内置导航API。 而React Navigation则为你提供了该功能，你甚至还可以使用它来实现iOS和Android平台的手势切换交互以及屏幕转换的动画。</li>
+<li>createStacknavigator函数允许你通过配置路由以及其他的属性，并返回一个React组件</li>
+<li>路由配置对象中的键是路由名称，值是该路由的配置。 配置中唯一需要的属性是屏幕（用于路径的组件）。</li>
+<li>可以使用initialRouteName来指定堆栈导航器中的初始路由</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-【React-Navigation】一、环境配置"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -352,6 +418,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-粘包，拆包/">【QT】进程间通信 -- 粘包，拆包</a></h6>
+              <span>January 15, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-TCP-IP/">【QT】进程间通信 -- TCP/IP</a></h6>
               <span>January 15, 2020</span>
             </div>
@@ -406,18 +484,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/14/【QT】动态添加-Horizontal-Line-和-Vertical-Line/">【QT】动态添加 Horizontal Line 和 Vertical Line</a></h6>
-              <span>January 14, 2020</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -427,7 +493,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -438,7 +504,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

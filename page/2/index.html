@@ -154,6 +154,64 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-【React-Navigation】十二、自定义Android返回键的行为"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/08/29/【React-Navigation】十二、自定义Android返回键的行为/">【React Navigation】十二、自定义Android返回键的行为</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/08/29/【React-Navigation】十二、自定义Android返回键的行为/" class="article-date">
+	  <time datetime="2018-08-29T06:10:32.000Z" itemprop="datePublished">August 29, 2018</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在默认情况下，当用户点击返回键时，react-navigation将会返回上一级页面，或者直接退出程序（当没有上一级页面时）。这是默认的合理处理，但有些情形下我们可能希望自定义返回键的一些行为。</p>
+<p><em>假如你正在查找一种简单的处理，可以直接导出社区开源的包：react-navigation-backhandler。在接下来的小节中，我们将会介绍这个包是如何实现返回键的自定义功能的</em></p>
+<p>举个例子，在某个页面，用户选择了列表的某一项，选中的那项当前是选中状态。当你按下返回键时，你首先希望的是选中的那项变成不被选中的状态，然后再按一次返回键才是返回上一级页面。以下代码片段说明了这种情况。 我们使用react-native提供的BackHandler，通过订阅导航生命周期来添加自定义hardwareBackPress监听器。</p>
+<p>从onBackButtonPressAndroid返回true表示我们已经处理了该事件，并且不会调用react-navigation的监听器，因此不会弹出屏幕。返回false将导致事件冒泡并且react-navigation的侦听器将弹出屏幕。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import &#123; BackHandler &#125; from &quot;react-native&quot;;</span><br><span class="line"></span><br><span class="line">class ScreenWithCustomBackBehavior extends React.Component &#123;</span><br><span class="line">  _didFocusSubscription;</span><br><span class="line">  _willBlurSubscription;</span><br><span class="line">  </span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this._didFocusSubscription = props.navigation.addListener(&apos;didFocus&apos;, payload =&gt;</span><br><span class="line">      BackHandler.addEventListener(&apos;hardwareBackPress&apos;, this.onBackButtonPressAndroid)</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this._willBlurSubscription = this.props.navigation.addListener(&apos;willBlur&apos;, payload =&gt;</span><br><span class="line">      BackHandler.removeEventListener(&apos;hardwareBackPress&apos;, this.onBackButtonPressAndroid)</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  onBackButtonPressAndroid = () =&gt; &#123;</span><br><span class="line">    if (this.isSelectionModeEnabled()) &#123;</span><br><span class="line">      this.disableSelectionMode();</span><br><span class="line">      return true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return false;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    this._didFocusSubscription &amp;&amp; this._didFocusSubscription.remove();</span><br><span class="line">    this._willBlurSubscription &amp;&amp; this._willBlurSubscription.remove();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上班提出的方法适用于StackNavigator中显示的屏幕。目前可能不支持在其他情况下自定义后退按钮处理（例如，一个已知情形是：当你希望在一个打开的抽屉导航器上自定义返回键时会不起效）。</p>
+<p><em>为什么我们不使用组件的生命周期回调的函数呢？</em></p>
+<ol>
+<li>首先，您可能倾向于使用componentDidMount来订阅backpress事件，而使用componentWillUnmount来取消订阅。 我们不使用它们的原因是它们在进入或离开屏幕时通常不被调用。</li>
+<li>更具体地说，考虑这样一个场景：具有屏幕A和B的StackNavigator。导航到A后，调用其componentDidMount。 当按下B时，也会调用其componentDidMount，但A仍然挂载，因此不会调用其componentWillUnmount。</li>
+<li>类似地，当从B返回到A时，会调用B的componentWillUnmount函数，但是A的componentDidMount则不会，因为A一直处在挂载状态。</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-【React-Navigation】十一、导航器嵌套使用的一些注意事项"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -688,72 +746,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-【React-Navigation】二、createStackNavigator-堆栈导航器"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】二、createStackNavigator-堆栈导航器/">【React Navigation】二、createStackNavigator-堆栈导航器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】二、createStackNavigator-堆栈导航器/" class="article-date">
-	  <time datetime="2018-08-29T06:01:43.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在Web浏览器中，你可以通过（<a>）标签跳转到不同的页面。当用户单击某个链接时，当前的URL将保存到到浏览器历史记录堆栈。当用户按下后退按钮时，浏览器会从历史堆栈的顶部弹出上一个访问的URL，因此可以切换回到先前访问过的页面。 React Native没有像Web浏览器那样内置全局历史堆栈的功能。</a></p>
-<p>而React Navigation则为您的应用提供了一种在屏幕切换和管理导航历史记录的方法。如果您的应用程序仅使用一个堆栈导航器，那么它在概念上类似于Web浏览器处理导航状态的方式 - 当用户与其交互时，您的应用程序会从导航堆栈中推送和弹出项目，这会导致用户看到不同的屏幕。但Web浏览器和React Navigation的主要区别在于：在切换不同的页面时，React Navigation的堆栈导航器实现了类似于原生（Android和iOS）的手势交互和动画效果。</p>
-<p>我们首先从React Navigation中一个名为createStackNavigator的函数开始着手。</p>
-<h3 id="创建一个堆栈导航器"><a href="#创建一个堆栈导航器" class="headerlink" title="创建一个堆栈导航器"></a>创建一个堆栈导航器</h3><p>因为createStackNavigator函数会返回一个React组件，我们可以直接App.js中使用它作为App的根组件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// In App.js in a new project</span><br><span class="line">// 在App.js中替换以上代码，然后运行</span><br><span class="line"></span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; View, Text &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; createStackNavigator &#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Home Screen&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default createStackNavigator(&#123;</span><br><span class="line">  Home: &#123;</span><br><span class="line">    screen: HomeScreen</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>当运行该程序，你可以看到整个页面中包含了一个空的导航条和一个包含了HomeScreen组件的灰色内容区域。这是堆栈导航器的默认风格，稍后的章节我们会学习如何去配置这些风格和样式。</p>
-<p><em>重点：</em><br><em>1. 路由名称不区分大小写</em><br><em>2. 每个路由必须配置screen组件</em></p>
-<p>我们还可以使用createStackNavigator函数将堆栈导航器保存成一个RootStack组件，作为我们的App.js中的跟组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const RootStack = createStackNavigator(&#123;</span><br><span class="line">  Home: &#123;</span><br><span class="line">    screen: HomeScreen</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;RootStack /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="路由的快速配置"><a href="#路由的快速配置" class="headerlink" title="路由的快速配置"></a>路由的快速配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 可以省略大括号</span><br><span class="line">const RootStack = createStackNavigator(&#123;</span><br><span class="line">  Home: HomeScreen</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="增加第二个路由"><a href="#增加第二个路由" class="headerlink" title="增加第二个路由"></a>增加第二个路由</h3><p><rootstack>组件没有配置其他的属性 - 所有配置都在createStackNavigator函数的options参数中指定。 我们将选项留空，因此它只使用默认配置。 为了查看使用options对象的示例，我们将向堆栈导航器添加第二个屏幕。</rootstack></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// Other code for HomeScreen here...</span><br><span class="line"></span><br><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Details Screen&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const RootStack = createStackNavigator(</span><br><span class="line">  &#123;</span><br><span class="line">    Home: HomeScreen,</span><br><span class="line">    Details: DetailsScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    initialRouteName: &apos;Home&apos;,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">// Other code for App component here...</span><br></pre></td></tr></table></figure>
-<p>现在导航器包含了两个路由：Home路由与HomeScreen组件关联，Details路由与DetailsScreen组件关联。我们使用Home路由作为程序初始化的路由。</p>
-<p>这时我们会自然想到一个问题：怎么从Home路由跳转到Details路由呢？我们将在下一个环节介绍。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>React Native没有提供像Web浏览器那样的内置导航API。 而React Navigation则为你提供了该功能，你甚至还可以使用它来实现iOS和Android平台的手势切换交互以及屏幕转换的动画。</li>
-<li>createStacknavigator函数允许你通过配置路由以及其他的属性，并返回一个React组件</li>
-<li>路由配置对象中的键是路由名称，值是该路由的配置。 配置中唯一需要的属性是屏幕（用于路径的组件）。</li>
-<li>可以使用initialRouteName来指定堆栈导航器中的初始路由</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -850,6 +842,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-粘包，拆包/">【QT】进程间通信 -- 粘包，拆包</a></h6>
+              <span>January 15, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-TCP-IP/">【QT】进程间通信 -- TCP/IP</a></h6>
               <span>January 15, 2020</span>
             </div>
@@ -904,18 +908,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/14/【QT】动态添加-Horizontal-Line-和-Vertical-Line/">【QT】动态添加 Horizontal Line 和 Vertical Line</a></h6>
-              <span>January 14, 2020</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -925,7 +917,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -936,7 +928,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

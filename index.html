@@ -154,6 +154,56 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-【QT】进程间通信-字节数组与int之间的转换"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/">【QT】进程间通信 -- 字节数组与int之间的转换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/" class="article-date">
+	  <time datetime="2020-01-15T06:25:32.000Z" itemprop="datePublished">January 15, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在上一篇粘包的文章中提到，解决粘包的一种方式是，自定义消息，在消息头中增加包总长度的信息。不管tcp还是命名管道，都是以字节流的方式传递给接收者的。在解包的过程中，需要将头部的总长度信息提取出来，这就涉及到字节数字与int之间的转换。</p>
+<p>另外，在不同的操作系统、处理器，数据的存储还有大小端之分：高位在前低位在后，低位在前高位在后。因此需要提供两种转换模式</p>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// 大端：地址低位存储值的高位，地址高位存储值的低位</span><br><span class="line">QByteArray BaseServer::intToByteArray(int len)</span><br><span class="line">&#123;</span><br><span class="line"> 	QByteArray byteArray;</span><br><span class="line"> 	byteArray.resize(4);</span><br><span class="line"> 	byteArray[3] = (unsigned char)(0x000000ff &amp; len);</span><br><span class="line"> 	byteArray[2] = (unsigned char)((0x0000ff00 &amp; len) &gt;&gt; 8);</span><br><span class="line"> 	byteArray[1] = (unsigned char)((0x00ff0000 &amp; len) &gt;&gt; 16);</span><br><span class="line"> 	byteArray[0] = (unsigned char)((0xff000000 &amp; len) &gt;&gt; 24);</span><br><span class="line"> 	return byteArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int BaseServer::byteArrayToInt(QByteArray byteArray)</span><br><span class="line">&#123;</span><br><span class="line"> 	int len = byteArray[3] &amp; 0x000000ff;</span><br><span class="line"> 	len |= ((byteArray[2] &lt;&lt; 8) &amp; 0x0000ff00);</span><br><span class="line"> 	len |= ((byteArray[1] &lt;&lt; 16) &amp; 0x00ff0000);</span><br><span class="line"> 	len |= ((byteArray[0] &lt;&lt; 24) &amp; 0xff000000);</span><br><span class="line"> 	return len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 小端：地址低位存储值的低位，地址高位存储值的高位</span><br><span class="line">QByteArray BaseServer::intToByteArray(int len)</span><br><span class="line">&#123;</span><br><span class="line"> 	QByteArray byteArray;</span><br><span class="line"> 	byteArray.resize(4);</span><br><span class="line"> 	byteArray[0] = (unsigned char)(0x000000ff &amp; len);</span><br><span class="line"> 	byteArray[1] = (unsigned char)((0x0000ff00 &amp; len) &gt;&gt; 8);</span><br><span class="line"> 	byteArray[2] = (unsigned char)((0x00ff0000 &amp; len) &gt;&gt; 16);</span><br><span class="line"> 	byteArray[3] = (unsigned char)((0xff000000 &amp; len) &gt;&gt; 24);</span><br><span class="line"> 	return byteArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int BaseServer::byteArrayToInt(QByteArray byteArray)</span><br><span class="line">&#123;</span><br><span class="line"> 	int len = byteArray[0] &amp; 0x000000ff;</span><br><span class="line"> 	len |= ((byteArray[1] &lt;&lt; 8) &amp; 0x0000ff00);</span><br><span class="line"> 	len |= ((byteArray[2] &lt;&lt; 16) &amp; 0x00ff0000);</span><br><span class="line"> 	len |= ((byteArray[3] &lt;&lt; 24) &amp; 0xff000000);</span><br><span class="line"> 	return len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><p>网络字节顺序是TCP/IP中规定好的一种数据表示格式，它与具体的CPU类型、操作系统等无关，从而可以保证数据在不同主机之间传输时能够被正确解释。网络字节顺序采用big endian（大端）排序方式。因此，在大端CPU与网络序之间不需要考虑转换。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/QT/">QT</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-【QT】进程间通信-粘包，拆包"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -701,58 +751,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-【React-Navigation】十三、在任意组件中使用navigation属性"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】十三、在任意组件中使用navigation属性/">【React Navigation】十三、在任意组件中使用navigation属性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】十三、在任意组件中使用navigation属性/" class="article-date">
-	  <time datetime="2018-08-29T06:11:27.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>withNavigation是一个更高阶的组件，它可以将navigation属性传递给一个包装好的组件。当您无法直接将navigation传递到组件中，或者不想在深层嵌套的子项中传递它时，它将很有用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; Button &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; withNavigation &#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">export default class MyBackButton extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    // This will throw an &apos;undefined is not a function&apos; exception because the navigation</span><br><span class="line">    // prop is undefined.</span><br><span class="line">    return &lt;Button title=&quot;Back&quot; onPress=&#123;() =&gt; &#123; this.props.navigation.goBack() &#125;&#125; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>要处理上边出现的异常，你可以在屏幕渲染时将navigation传递给MyBackButton，如：<mybackbutton navigation="{this.props.navigation}"></mybackbutton></p>
-<p>或者，您可以使用withNavigation函数来自动提供navigation。此函数的行为与Redux的connect函数类似，connect为它包装的组件提供dispatch，而withNavigation则为组件提供navigation。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; Button &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; withNavigation &#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">class MyBackButton extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Button title=&quot;Back&quot; onPress=&#123;() =&gt; &#123; this.props.navigation.goBack() &#125;&#125; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// withNavigation returns a component that wraps MyBackButton and passes in the</span><br><span class="line">// navigation prop</span><br><span class="line">export default withNavigation(MyBackButton);</span><br></pre></td></tr></table></figure>
-<p>完整可执行代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; View, Text, TouchableHighlight,Button &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">  createStackNavigator,</span><br><span class="line">  createBottomTabNavigator,</span><br><span class="line">  createDrawerNavigator,</span><br><span class="line">  withNavigation,</span><br><span class="line">&#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">class MyBackButton extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Button title=&quot;Back&quot; onPress=&#123;() =&gt; &#123; this.props.navigation.navigate(&apos;Details&apos;) &#125;&#125; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// withNavigation returns a component that wraps MyBackButton and passes in the</span><br><span class="line">// navigation prop</span><br><span class="line">const MyButton = withNavigation(MyBackButton);</span><br><span class="line"></span><br><span class="line">const Placeholder = (&#123; text &#125;) =&gt; (</span><br><span class="line">  &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">    &lt;Text&gt;&#123;text&#125;&lt;/Text&gt;</span><br><span class="line">  &lt;/View&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">class FeedScreen extends React.Component &#123;</span><br><span class="line">	</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">		&lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">			&lt;MyButton /&gt;</span><br><span class="line">		&lt;/View&gt;</span><br><span class="line">	);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">FeedScreen.navigationOptions = &#123;</span><br><span class="line">	title: &quot;FeedScreen&quot;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Placeholder text=&quot;DetailsScreen!&quot; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">DetailsScreen.navigationOptions = &#123;</span><br><span class="line">	title: &quot;DetailsScreen&quot;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class ProfileScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Placeholder text=&quot;ProfileScreen!&quot; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const FeedStack = createStackNavigator(&#123;</span><br><span class="line">  FeedHome: FeedScreen,</span><br><span class="line">  Details: DetailsScreen,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default createDrawerNavigator(&#123;</span><br><span class="line">  Feed: FeedStack,</span><br><span class="line">  Profile: ProfileScreen,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">FeedStack.navigationOptions = (&#123; navigation &#125;) =&gt; &#123;</span><br><span class="line">  let drawerLockMode = &apos;unlocked&apos;;</span><br><span class="line">  if (navigation.state.index &gt; 0) &#123;</span><br><span class="line">    drawerLockMode = &apos;locked-closed&apos;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return &#123;</span><br><span class="line">    drawerLockMode,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -849,6 +847,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/">【QT】进程间通信 -- 字节数组与int之间的转换</a></h6>
+              <span>January 15, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-粘包，拆包/">【QT】进程间通信 -- 粘包，拆包</a></h6>
               <span>January 15, 2020</span>
             </div>
@@ -903,18 +913,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/14/【QT】QListWidget、QScrollArea等添加触摸滚动和惯性滚动/">【QT】QListWidget、QScrollArea等添加触摸滚动和惯性滚动</a></h6>
-              <span>January 14, 2020</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -924,7 +922,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -935,7 +933,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

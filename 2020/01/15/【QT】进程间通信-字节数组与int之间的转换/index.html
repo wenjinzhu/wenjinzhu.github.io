@@ -13,23 +13,23 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>【qt】进程间通信 -- 粘包，拆包 | King的技术小栈</title>
+  <title>【qt】进程间通信 -- 字节数组与int之间的转换 | King的技术小栈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta name="description" content="前言不管是走命名管道还是TCP/IP的方式，都会有粘包的问题发生。粘包的产生的原因可以这么理解：客户端与服务器维持一个长连接，在连接不断开的情况下，可以持续不断地进行数据的交互。一个完整的包可能被TCP拆分为多个包进行发送，也可能把多个小包封装成一个大的数据包进行发送。 粘包的情况有几种：  收到一个完整的包，没有粘包 收到一个完整的包和下一个包的一部分 收到上一个包的一部分和下一个完整的包 收到">
+  <meta name="description" content="前言在上一篇粘包的文章中提到，解决粘包的一种方式是，自定义消息，在消息头中增加包总长度的信息。不管tcp还是命名管道，都是以字节流的方式传递给接收者的。在解包的过程中，需要将头部的总长度信息提取出来，这就涉及到字节数字与int之间的转换。 另外，在不同的操作系统、处理器，数据的存储还有大小端之分：高位在前低位在后，低位在前高位在后。因此需要提供两种转换模式 具体代码1234567891011121">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【QT】进程间通信 -- 粘包，拆包">
-<meta property="og:url" content="http://yoursite.com/2020/01/15/【QT】进程间通信-粘包，拆包/index.html">
+<meta property="og:title" content="【QT】进程间通信 -- 字节数组与int之间的转换">
+<meta property="og:url" content="http://yoursite.com/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/index.html">
 <meta property="og:site_name" content="King的技术小栈">
-<meta property="og:description" content="前言不管是走命名管道还是TCP/IP的方式，都会有粘包的问题发生。粘包的产生的原因可以这么理解：客户端与服务器维持一个长连接，在连接不断开的情况下，可以持续不断地进行数据的交互。一个完整的包可能被TCP拆分为多个包进行发送，也可能把多个小包封装成一个大的数据包进行发送。 粘包的情况有几种：  收到一个完整的包，没有粘包 收到一个完整的包和下一个包的一部分 收到上一个包的一部分和下一个完整的包 收到">
+<meta property="og:description" content="前言在上一篇粘包的文章中提到，解决粘包的一种方式是，自定义消息，在消息头中增加包总长度的信息。不管tcp还是命名管道，都是以字节流的方式传递给接收者的。在解包的过程中，需要将头部的总长度信息提取出来，这就涉及到字节数字与int之间的转换。 另外，在不同的操作系统、处理器，数据的存储还有大小端之分：高位在前低位在后，低位在前高位在后。因此需要提供两种转换模式 具体代码1234567891011121">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-15T06:25:58.934Z">
+<meta property="og:updated_time" content="2020-01-15T06:47:59.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【QT】进程间通信 -- 粘包，拆包">
-<meta name="twitter:description" content="前言不管是走命名管道还是TCP/IP的方式，都会有粘包的问题发生。粘包的产生的原因可以这么理解：客户端与服务器维持一个长连接，在连接不断开的情况下，可以持续不断地进行数据的交互。一个完整的包可能被TCP拆分为多个包进行发送，也可能把多个小包封装成一个大的数据包进行发送。 粘包的情况有几种：  收到一个完整的包，没有粘包 收到一个完整的包和下一个包的一部分 收到上一个包的一部分和下一个完整的包 收到">
+<meta name="twitter:title" content="【QT】进程间通信 -- 字节数组与int之间的转换">
+<meta name="twitter:description" content="前言在上一篇粘包的文章中提到，解决粘包的一种方式是，自定义消息，在消息头中增加包总长度的信息。不管tcp还是命名管道，都是以字节流的方式传递给接收者的。在解包的过程中，需要将头部的总长度信息提取出来，这就涉及到字节数字与int之间的转换。 另外，在不同的操作系统、处理器，数据的存储还有大小端之分：高位在前低位在后，低位在前高位在后。因此需要提供两种转换模式 具体代码1234567891011121">
   
     <link rel="alternate" href="/atom.xml" title="King的技术小栈" type="application/atom+xml">
   
@@ -153,7 +153,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-【QT】进程间通信-粘包，拆包" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-【QT】进程间通信-字节数组与int之间的转换" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -161,7 +161,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      【QT】进程间通信 -- 粘包，拆包
+      【QT】进程间通信 -- 字节数组与int之间的转换
     </h1>
   
 
@@ -169,8 +169,8 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/2020/01/15/【QT】进程间通信-粘包，拆包/" class="article-date">
-	  <time datetime="2020-01-15T03:28:48.000Z" itemprop="datePublished">January 15, 2020</time>
+	Posted on <a href="/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/" class="article-date">
+	  <time datetime="2020-01-15T06:25:32.000Z" itemprop="datePublished">January 15, 2020</time>
 	</a>
 
       
@@ -181,20 +181,10 @@ var themeMenus = {};
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>不管是走命名管道还是TCP/IP的方式，都会有粘包的问题发生。粘包的产生的原因可以这么理解：客户端与服务器维持一个长连接，在连接不断开的情况下，可以持续不断地进行数据的交互。一个完整的包可能被TCP拆分为多个包进行发送，也可能把多个小包封装成一个大的数据包进行发送。</p>
-<p>粘包的情况有几种：</p>
-<ol>
-<li>收到一个完整的包，没有粘包</li>
-<li>收到一个完整的包和下一个包的一部分</li>
-<li>收到上一个包的一部分和下一个完整的包</li>
-<li>收到一个包的一部分（完整的包太大，被拆分成多个包）</li>
-</ol>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>常见的解决方案有几种</p>
-<ol>
-<li>消息定长：即限制每个包的大小，如果不够，用空格补齐。这种方式，需要注意待发送数据小于MSS（最大报文长度），不然还是会被分包</li>
-<li>在包尾增加特殊字符进行分割。这种方式，需要注意待发送数据里边本身包含特殊字符的情况</li>
-<li>自定义协议，消息分为消息头和消息体两部分，消息头包含消息的总长度。这种方式，需要自己去解析每个消息头获取消息的总长度，然后再进行处理</li>
-</ol>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在上一篇粘包的文章中提到，解决粘包的一种方式是，自定义消息，在消息头中增加包总长度的信息。不管tcp还是命名管道，都是以字节流的方式传递给接收者的。在解包的过程中，需要将头部的总长度信息提取出来，这就涉及到字节数字与int之间的转换。</p>
+<p>另外，在不同的操作系统、处理器，数据的存储还有大小端之分：高位在前低位在后，低位在前高位在后。因此需要提供两种转换模式</p>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// 大端：地址低位存储值的高位，地址高位存储值的低位</span><br><span class="line">QByteArray BaseServer::intToByteArray(int len)</span><br><span class="line">&#123;</span><br><span class="line"> 	QByteArray byteArray;</span><br><span class="line"> 	byteArray.resize(4);</span><br><span class="line"> 	byteArray[3] = (unsigned char)(0x000000ff &amp; len);</span><br><span class="line"> 	byteArray[2] = (unsigned char)((0x0000ff00 &amp; len) &gt;&gt; 8);</span><br><span class="line"> 	byteArray[1] = (unsigned char)((0x00ff0000 &amp; len) &gt;&gt; 16);</span><br><span class="line"> 	byteArray[0] = (unsigned char)((0xff000000 &amp; len) &gt;&gt; 24);</span><br><span class="line"> 	return byteArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int BaseServer::byteArrayToInt(QByteArray byteArray)</span><br><span class="line">&#123;</span><br><span class="line"> 	int len = byteArray[3] &amp; 0x000000ff;</span><br><span class="line"> 	len |= ((byteArray[2] &lt;&lt; 8) &amp; 0x0000ff00);</span><br><span class="line"> 	len |= ((byteArray[1] &lt;&lt; 16) &amp; 0x00ff0000);</span><br><span class="line"> 	len |= ((byteArray[0] &lt;&lt; 24) &amp; 0xff000000);</span><br><span class="line"> 	return len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 小端：地址低位存储值的低位，地址高位存储值的高位</span><br><span class="line">QByteArray BaseServer::intToByteArray(int len)</span><br><span class="line">&#123;</span><br><span class="line"> 	QByteArray byteArray;</span><br><span class="line"> 	byteArray.resize(4);</span><br><span class="line"> 	byteArray[0] = (unsigned char)(0x000000ff &amp; len);</span><br><span class="line"> 	byteArray[1] = (unsigned char)((0x0000ff00 &amp; len) &gt;&gt; 8);</span><br><span class="line"> 	byteArray[2] = (unsigned char)((0x00ff0000 &amp; len) &gt;&gt; 16);</span><br><span class="line"> 	byteArray[3] = (unsigned char)((0xff000000 &amp; len) &gt;&gt; 24);</span><br><span class="line"> 	return byteArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int BaseServer::byteArrayToInt(QByteArray byteArray)</span><br><span class="line">&#123;</span><br><span class="line"> 	int len = byteArray[0] &amp; 0x000000ff;</span><br><span class="line"> 	len |= ((byteArray[1] &lt;&lt; 8) &amp; 0x0000ff00);</span><br><span class="line"> 	len |= ((byteArray[2] &lt;&lt; 16) &amp; 0x00ff0000);</span><br><span class="line"> 	len |= ((byteArray[3] &lt;&lt; 24) &amp; 0xff000000);</span><br><span class="line"> 	return len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><p>网络字节顺序是TCP/IP中规定好的一种数据表示格式，它与具体的CPU类型、操作系统等无关，从而可以保证数据在不同主机之间传输时能够被正确解释。网络字节顺序采用big endian（大端）排序方式。因此，在大端CPU与网络序之间不需要考虑转换。</p>
 
       
     </div>
@@ -237,19 +227,10 @@ var themeMenus = {};
     
 <nav id="article-nav">
   
-    <a href="/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          【QT】进程间通信 -- 字节数组与int之间的转换
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/01/15/【QT】进程间通信-TCP-IP/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/01/15/【QT】进程间通信-粘包，拆包/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">【QT】进程间通信 -- TCP/IP</div>
+      <div class="article-nav-title">【QT】进程间通信 -- 粘包，拆包</div>
     </a>
   
 </nav>
@@ -263,7 +244,7 @@ var themeMenus = {};
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体代码"><span class="nav-number">2.</span> <span class="nav-text">具体代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他补充"><span class="nav-number">3.</span> <span class="nav-text">其他补充</span></a></li></ol>
     
     </div>
   </aside>

@@ -154,6 +154,63 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/01/16/【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例/">【QT】进程间通信 -- 使用命名管道实现qt应用程序只运行一个实例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/01/16/【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例/" class="article-date">
+	  <time datetime="2020-01-16T03:44:05.000Z" itemprop="datePublished">January 16, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在项目中，会遇到这么一个需求，应用程序只能存在一个运行实例。关于这需求，网上流行几种实现方式：</p>
+<ol>
+<li>通过QSharedMemory实现</li>
+<li>使用官方提供的QTSingleApplication</li>
+<li>使用QLocalServer和QLocalSocket</li>
+</ol>
+<p>本文章主要介绍第三种方式</p>
+<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><ol>
+<li>继承QApplicaiton或者QCoreApplication自定义一个SingleApplication</li>
+<li>在SingleApplication构造函数中创建一个QLocalSocket连接指定server_name的server，这时有两种情况：<br>2.1 假如没有连接成功，则代表没有运行实例，这时允许程序运行，并创建一个指定server_name的QLocalServer用来监听连接<br>2.2 假如连接成功，从第二步可以发现，这时已经存在了一个运行实例，这时就不允许再创建新的运行实例</li>
+</ol>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">SingleApplication::SingleApplication(int &amp;argc, char **argv)</span><br><span class="line">	: QApplication(argc, argv)</span><br><span class="line">&#123;</span><br><span class="line">	m_serverName = QFileInfo(QCoreApplication::applicationFilePath()).fileName();</span><br><span class="line">	initServer();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void SingleApplication::onNewConnection()</span><br><span class="line">&#123;</span><br><span class="line">	QLocalSocket *socket = m_server-&gt;nextPendingConnection();</span><br><span class="line">	if (socket)</span><br><span class="line">	&#123;</span><br><span class="line">		socket-&gt;waitForReadyRead(1000);</span><br><span class="line">		delete socket;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void SingleApplication::initServer()</span><br><span class="line">&#123;</span><br><span class="line">	QLocalSocket socket;</span><br><span class="line"></span><br><span class="line">	// 连接以应用程序名称为server name的server</span><br><span class="line">	// 如果连接不上则代表未启动，此时创建一个新的server</span><br><span class="line">	m_isRunning = false;</span><br><span class="line">	socket.connectToServer(m_serverName);</span><br><span class="line">	if (socket.waitForConnected())</span><br><span class="line">	&#123;</span><br><span class="line">		m_isRunning = true;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	m_server = new QLocalServer(this);</span><br><span class="line">	connect(m_server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));</span><br><span class="line">	if (!m_server-&gt;listen(m_serverName))</span><br><span class="line">	&#123;</span><br><span class="line">		// 此时监听失败，可能是程序崩溃是残留进程的服务所导致，移除之</span><br><span class="line">		if (QAbstractSocket::AddressInUseError == m_server-&gt;serverError())</span><br><span class="line">		&#123;</span><br><span class="line">			QLocalServer::removeServer(m_serverName);</span><br><span class="line">			m_server-&gt;listen(m_serverName);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/QT/">QT</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-【QT】进程间通信-字节数组与int之间的转换"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -698,59 +755,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-【React-Navigation】完整例子"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】完整例子/">【React Navigation】完整例子</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】完整例子/" class="article-date">
-	  <time datetime="2018-08-29T06:54:07.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h3><p>该项目将<a href="https://reactnative.cn/docs/0.51/getting-started.html" target="_blank" rel="noopener">React Native 中文网 - 文档</a>这部分内容浓缩为成一个android程序，方便童鞋们随时随地掏出手机学习React Native：</p>
-<ol>
-<li>项目包含了React Navigation的部分章节内容，可以通过该项目源码配合熟悉之前的知识</li>
-<li>需要打包的童鞋，可以参考章节<a href="https://reactnative.cn/docs/0.51/running-on-device-ios/" target="_blank" rel="noopener">IOS</a>或<a href="https://reactnative.cn/docs/0.51/signed-apk-android/" target="_blank" rel="noopener">Android</a></li>
-</ol>
-<h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a href="https://github.com/wenjinzhu/ReactOne" target="_blank" rel="noopener">ReactOne</a></p>
-<h3 id="项目截图"><a href="#项目截图" class="headerlink" title="项目截图"></a>项目截图</h3><img src="/2018/08/29/【React-Navigation】完整例子/imageOne.jpg" title="imageOne">
-<img src="/2018/08/29/【React-Navigation】完整例子/imageTwo.jpg" title="imageTwo">
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -847,6 +851,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/01/16/【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例/">【QT】进程间通信 -- 使用命名管道实现qt应用程序只运行一个实例</a></h6>
+              <span>January 16, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/">【QT】进程间通信 -- 字节数组与int之间的转换</a></h6>
               <span>January 15, 2020</span>
             </div>
@@ -901,18 +917,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】动态监测U盘插拔/">【QT】动态监测U盘插拔</a></h6>
-              <span>January 15, 2020</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -922,7 +926,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -933,7 +937,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

@@ -154,6 +154,60 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-【QT】多线程-实现多线程的几种方式"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/01/16/【QT】多线程-实现多线程的几种方式/">【QT】多线程 -- 实现多线程的几种方式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/01/16/【QT】多线程-实现多线程的几种方式/" class="article-date">
+	  <time datetime="2020-01-16T05:48:45.000Z" itemprop="datePublished">January 16, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>假如将一些耗时操作放在UI线程处理，会导致UI卡顿，影响用户使用体验。因此，我们通常会将耗时操作放在新的线程中处理。这就涉及到线程的使用。在qt中，有几种方式启动多线程：</p>
+<ol>
+<li>继承QThread，重新实现run()函数</li>
+<li>使用QObject::moveToThread()函数</li>
+<li>使用QtConcurrent模块</li>
+</ol>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">// 1. 继承QThread</span><br><span class="line">class DemoThread : public QThread</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit DemoThread(QObject *parent = 0);</span><br><span class="line">    ~DemoThread();</span><br><span class="line"></span><br><span class="line">protected:</span><br><span class="line">    //QThread的虚函数，不能直接调用，通过start()间接调用</span><br><span class="line">    void run();</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line">	//处理完成信号</span><br><span class="line">    void processFinished();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#endif // MYTHREAD_H</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void DemoThread::run()</span><br><span class="line">&#123;</span><br><span class="line">    // 在该函数中进行业务的耗时操作</span><br><span class="line">    // doSomething</span><br><span class="line">	//发送完成信号</span><br><span class="line">    emit processFinished();  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 2. 通过QObject::moveToThread() --- qt assistant 提供的例子</span><br><span class="line">class Worker : public QObject</span><br><span class="line">&#123;</span><br><span class="line">  Q_OBJECT</span><br><span class="line"></span><br><span class="line">public slots:</span><br><span class="line">  void doWork(const QString &amp;parameter) &#123;</span><br><span class="line">      QString result;</span><br><span class="line">      /* ... here is the expensive or blocking operation ... */</span><br><span class="line">      emit resultReady(result);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line">  void resultReady(const QString &amp;result);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Controller : public QObject</span><br><span class="line">&#123;</span><br><span class="line">  Q_OBJECT</span><br><span class="line">  QThread workerThread;</span><br><span class="line">public:</span><br><span class="line">  Controller() &#123;</span><br><span class="line">      Worker *worker = new Worker;</span><br><span class="line">      worker-&gt;moveToThread(&amp;workerThread);</span><br><span class="line">      connect(&amp;workerThread, &amp;QThread::finished, worker, &amp;QObject::deleteLater);</span><br><span class="line">      connect(this, &amp;Controller::operate, worker, &amp;Worker::doWork);</span><br><span class="line">      connect(worker, &amp;Worker::resultReady, this, &amp;Controller::handleResults);</span><br><span class="line">      workerThread.start();</span><br><span class="line">  &#125;</span><br><span class="line">  ~Controller() &#123;</span><br><span class="line">      workerThread.quit();</span><br><span class="line">      workerThread.wait();</span><br><span class="line">  &#125;</span><br><span class="line">public slots:</span><br><span class="line">  void handleResults(const QString &amp;);</span><br><span class="line">signals:</span><br><span class="line">  void operate(const QString &amp;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 3. 使用QtConcurrent模块</span><br><span class="line">// 3.1 不需要处理结果</span><br><span class="line">QtConcurrent::run(this, &amp;Controller::doWork, params);</span><br><span class="line">// 3.2 需要接受处理结果</span><br><span class="line">QFutureWatcher&lt;QVariantMap&gt; *doWorkWatcher = new QFutureWatcher&lt;QVariantMap&gt;;</span><br><span class="line">QFuture&lt;QVariantMap&gt; future = QtConcurrent::run(this, &amp;Controller::doWork, params);</span><br><span class="line">connect(doWorkWatcher, &amp;QFutureWatcher&lt;QVariantMap&gt;::finished, [=]()</span><br><span class="line">&#123;</span><br><span class="line">	QVariantMap result = doWorkWatcher-&gt;resultAt(0);</span><br><span class="line">	doWorkWatcher-&gt;deleteLater();</span><br><span class="line">&#125;);</span><br><span class="line">doWorkWatcher-&gt;setFuture(future);</span><br></pre></td></tr></table></figure>
+<h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><p>从上边三种方式来说，QtConcurrent的方式相对简单和直观。QtConcurrent是在Qt 4.4开始引入的。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/QT/">QT</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -675,86 +729,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-【React-Native】一、原生UI组件"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/09/07/【React-Native】一、原生UI组件/">【React Native】一、原生UI组件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/09/07/【React-Native】一、原生UI组件/" class="article-date">
-	  <time datetime="2018-09-07T12:33:03.000Z" itemprop="datePublished">September 7, 2018</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>React Native封装了大部分最常见的组件，但有时我们需要一些特殊的组件是React Native没有提供的。该文章将细说如何在React Naitve应用程序中封装和植入已有的原生UI组件。</p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
-<li>创建一个ViewManager的子类</li>
-<li>实现createViewInstance方法</li>
-<li>导出视图的属性设置器：使用@ReactProp（或@ReactPropGroup）注解</li>
-<li>把这个视图管理类注册到应用程序包的createViewManagers里</li>
-<li>实现JavaScript模块</li>
-</ol>
-<h2 id="具体代码实现"><a href="#具体代码实现" class="headerlink" title="具体代码实现"></a>具体代码实现</h2><p>我们将自定义一个可以显示圆形、圆角矩形和椭圆形图片的ImageView组件</p>
-<ol>
-<li>在Android中自定义该控件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line">public class RoundImageView extends ImageView &#123;</span><br><span class="line"></span><br><span class="line">    private Paint mPaint;</span><br><span class="line">    private int mWidth;</span><br><span class="line">    private int mRadius;</span><br><span class="line">    private RectF mRect;</span><br><span class="line">    private int mRoundRadius;</span><br><span class="line">    private BitmapShader mBitmapShader;</span><br><span class="line">    private Matrix mMatrix;</span><br><span class="line">    private int mType = 1;</span><br><span class="line"></span><br><span class="line">    public static final int TYPE_CIRCLE = 1;</span><br><span class="line">    public static final int TYPE_ROUND_RECTANGLE = 2;</span><br><span class="line">    public static final int TYPE_OVAL = 3;</span><br><span class="line">    public static final int DEFAUT_RADIUS = 5;</span><br><span class="line"></span><br><span class="line">    public RoundImageView(Context context) &#123;</span><br><span class="line">        this(context, null);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public RoundImageView(Context context, AttributeSet attrs) &#123;</span><br><span class="line">        this(context, attrs, 0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public RoundImageView(Context context, AttributeSet attrs, int defStyle) &#123;</span><br><span class="line">        super(context, attrs, defStyle);</span><br><span class="line">        initView();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void initView() &#123;</span><br><span class="line">        mPaint = new Paint();</span><br><span class="line">        mPaint.setAntiAlias(true);</span><br><span class="line">        mMatrix = new Matrix();</span><br><span class="line">        mRoundRadius = DEFAUT_RADIUS;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</span><br><span class="line">        super.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">        if (mType == TYPE_CIRCLE) &#123;</span><br><span class="line">            mWidth = Math.min(getMeasuredWidth(), getMeasuredHeight());</span><br><span class="line">            mRadius = mWidth / 2;</span><br><span class="line">            setMeasuredDimension(mWidth, mWidth);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">        if (null == getDrawable()) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        initBitmapShaderByType();</span><br><span class="line">        switch (mType) &#123;</span><br><span class="line">            case TYPE_CIRCLE:</span><br><span class="line">                canvas.drawCircle(mRadius, mRadius, mRadius, mPaint);</span><br><span class="line">                break;</span><br><span class="line">            case TYPE_ROUND_RECTANGLE:</span><br><span class="line">                mPaint.setColor(Color.RED);</span><br><span class="line">                canvas.drawRoundRect(mRect, mRoundRadius, mRoundRadius, mPaint);</span><br><span class="line">                break;</span><br><span class="line">            case TYPE_OVAL:</span><br><span class="line">                canvas.drawOval(mRect, mPaint);</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onSizeChanged(int w, int h, int oldw, int oldh) &#123;</span><br><span class="line">        super.onSizeChanged(w, h, oldw, oldh);</span><br><span class="line">        mRect = new RectF(0, 0, getWidth(), getHeight());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void initBitmapShaderByType() &#123;</span><br><span class="line">        Drawable drawable = getDrawable();</span><br><span class="line">        if (null == drawable) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        Bitmap bitmap = drawableToBitmap(drawable);</span><br><span class="line">        mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);</span><br><span class="line">        float scale = 1.0f;</span><br><span class="line">        switch (mType) &#123;</span><br><span class="line">            case TYPE_CIRCLE:</span><br><span class="line">                int bSize = Math.min(bitmap.getWidth(), bitmap.getHeight());</span><br><span class="line">                scale = mWidth * 1.0f / bSize;</span><br><span class="line">                break;</span><br><span class="line">            case TYPE_ROUND_RECTANGLE:</span><br><span class="line">            case TYPE_OVAL:</span><br><span class="line">                scale = Math.max(getWidth() * 1.0f / bitmap.getWidth(), getHeight() * 1.0f / bitmap.getHeight());</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        mMatrix.setScale(scale, scale);</span><br><span class="line">        mBitmapShader.setLocalMatrix(mMatrix);</span><br><span class="line">        mPaint.setShader(mBitmapShader);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setImageName(String name) &#123;</span><br><span class="line">        this.setImageResource(getResourceId(name));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setType(String typeStr) &#123;</span><br><span class="line">        int type = 1;</span><br><span class="line">        switch (typeStr) &#123;</span><br><span class="line">            case &quot;circle&quot;:</span><br><span class="line">                type = 1;</span><br><span class="line">                break;</span><br><span class="line">            case &quot;round&quot;:</span><br><span class="line">                type = 2;</span><br><span class="line">                break;</span><br><span class="line">            case &quot;oval&quot;:</span><br><span class="line">                type = 3;</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        if (this.mType != type) &#123;</span><br><span class="line">            this.mType = type;</span><br><span class="line">            invalidate();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setRoundRadius(int mRoundRadius) &#123;</span><br><span class="line">        if (this.mRoundRadius != mRoundRadius) &#123;</span><br><span class="line">            this.mRoundRadius = mRoundRadius;</span><br><span class="line">            invalidate();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Bitmap drawableToBitmap(Drawable drawable) &#123;</span><br><span class="line">        if (drawable instanceof BitmapDrawable) &#123;</span><br><span class="line">            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;</span><br><span class="line">            return bitmapDrawable.getBitmap();</span><br><span class="line">        &#125;</span><br><span class="line">        int w = drawable.getIntrinsicWidth();</span><br><span class="line">        int h = drawable.getIntrinsicHeight();</span><br><span class="line">        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);</span><br><span class="line">        Canvas canvas = new Canvas(bitmap);</span><br><span class="line">        drawable.setBounds(0, 0, w, h);</span><br><span class="line">        drawable.draw(canvas);</span><br><span class="line">        return bitmap;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int getResourceId(String imageName) &#123;</span><br><span class="line">        int resId = getResources().getIdentifier(imageName, &quot;mipmap&quot;, getContext().getPackageName());</span><br><span class="line">        if (resId == 0) &#123;</span><br><span class="line">            resId = getResources().getIdentifier(imageName, &quot;drawable&quot;, getContext().getPackageName());</span><br><span class="line">        &#125;</span><br><span class="line">        return resId;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>在上述的RoundImageView中对外提供了三个公共方法，用于后续js设置属性使用：</p>
-<ul>
-<li>setImageName(String name)</li>
-<li>setType(String typeStr)</li>
-<li>setRoundRadius(int mRoundRadius)</li>
-</ul>
-<ol start="2">
-<li><p>创建ViewManager子类，实现方法createViewInstance，通过@ReactProp（或@ReactPropGroup）注解来导出属性的设置方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public class RoundImageViewManager extends SimpleViewManager&lt;RoundImageView&gt; &#123;</span><br><span class="line"></span><br><span class="line">    public static final String COMPONENT_NAME = &quot;RoundImageView&quot;;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return COMPONENT_NAME;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected RoundImageView createViewInstance(ThemedReactContext reactContext) &#123;</span><br><span class="line">        return new RoundImageView(reactContext);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @ReactProp(name = &quot;name&quot;)</span><br><span class="line">    public void setPath(RoundImageView view, String name) &#123;</span><br><span class="line">        view.setImageName(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置图片类型：圆形、圆角矩形、椭圆形</span><br><span class="line">     *</span><br><span class="line">     * @param mType</span><br><span class="line">     */</span><br><span class="line">    @ReactProp(name = &quot;type&quot;)</span><br><span class="line">    public void setType(RoundImageView view, String mType) &#123;</span><br><span class="line">        view.setType(mType);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置圆角大小</span><br><span class="line">     *</span><br><span class="line">     * @parammRoundRadius</span><br><span class="line">     */</span><br><span class="line">    @ReactProp(name = &quot;roundradius&quot;)</span><br><span class="line">    public void setRoundRadius(RoundImageView view, int mRoundRadius) &#123;</span><br><span class="line">        view.setRoundRadius(mRoundRadius);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注册ViewManager，然后在Application的mReactNativeHost中返回RoundImageViewReactPackage</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public class RoundImageViewReactPackage implements ReactPackage &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public List&lt;NativeModule&gt; createNativeModules(ReactApplicationContext reactContext) &#123;</span><br><span class="line">        return Collections.emptyList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public List&lt;ViewManager&gt; createViewManagers(ReactApplicationContext reactContext) &#123;</span><br><span class="line">        return Arrays.&lt;ViewManager&gt;asList(new RoundImageViewManager());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean getUseDeveloperSupport() &#123;</span><br><span class="line">        return BuildConfig.DEBUG;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected List&lt;ReactPackage&gt; getPackages() &#123;</span><br><span class="line">        return Arrays.&lt;ReactPackage&gt;asList(</span><br><span class="line">                new MainReactPackage(),</span><br><span class="line">                new RoundImageViewReactPackage()</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected String getJSMainModuleName() &#123;</span><br><span class="line">        return &quot;index&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实现对应的JavaScript模块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import &#123; PropTypes &#125; from &apos;prop-types&apos;;</span><br><span class="line">import &#123; requireNativeComponent, View &#125; from &apos;react-native&apos;;</span><br><span class="line"></span><br><span class="line">const RoundImageView = requireNativeComponent(&apos;RoundImageView&apos;, &#123;</span><br><span class="line">  propTypes: &#123;</span><br><span class="line">    name: PropTypes.string,</span><br><span class="line">	type: PropTypes.oneOf([&apos;circle&apos;, &apos;round&apos;, &apos;oval&apos;]),</span><br><span class="line">	roundradius: PropTypes.number,</span><br><span class="line">    ...View.propTypes // 包含默认的View的属性</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default RoundImageView;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在js中使用该组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import &#123; Text, View, StyleSheet &#125; from &apos;react-native&apos;;</span><br><span class="line">import RoundImageView from &apos;./RoundImageView&apos;;</span><br><span class="line"></span><br><span class="line">export default class RoundImageViewTest extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;RoundImageView style=&#123;&#123;width: 100, height: 100&#125;&#125; name=&quot;icon_rectangle&quot; type=&quot;circle&quot; /&gt;</span><br><span class="line">		&lt;RoundImageView style=&#123;&#123;width: 100, height: 100&#125;&#125; name=&quot;icon_rectangle&quot; type=&quot;round&quot; roundradius=&#123;30&#125; /&gt;</span><br><span class="line">		&lt;RoundImageView style=&#123;&#123;width: 80, height: 100&#125;&#125; name=&quot;icon_rectangle&quot; type=&quot;oval&quot; roundradius=&#123;45&#125; /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">        flex: 1,</span><br><span class="line">        flexDirection: &apos;row&apos;,</span><br><span class="line">        justifyContent: &apos;space-around&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><img src="/2018/09/07/【React-Native】一、原生UI组件/image.jpg" title="imageOne">
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnative/">React Native</a>
-
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -851,6 +825,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/01/16/【QT】多线程-实现多线程的几种方式/">【QT】多线程 -- 实现多线程的几种方式</a></h6>
+              <span>January 16, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/01/16/【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例/">【QT】进程间通信 -- 使用命名管道实现qt应用程序只运行一个实例</a></h6>
               <span>January 16, 2020</span>
             </div>
@@ -905,18 +891,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】全局换肤/">【QT】全局换肤</a></h6>
-              <span>January 15, 2020</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -926,7 +900,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -937,7 +911,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

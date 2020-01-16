@@ -154,6 +154,76 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-【React-Navigation】五、配置标题栏"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/08/29/【React-Navigation】五、配置标题栏/">【React Navigation】五、配置标题栏</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/08/29/【React-Navigation】五、配置标题栏/" class="article-date">
+	  <time datetime="2018-08-29T06:04:33.000Z" itemprop="datePublished">August 29, 2018</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="设置标题栏标题"><a href="#设置标题栏标题" class="headerlink" title="设置标题栏标题"></a>设置标题栏标题</h3><p>屏幕组件可以包含一个名为navigationOptions 的静态属性，它既是一个对象也是一个方法，里边包含了各种的属性配置。我们可以通过它里边的title属性来设置标题栏标题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    title: &apos;Home&apos;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    title: &apos;Details&apos;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>createStackNavigator会使用平台的默认约定，IOS的标题会居中显示，而Android会靠左显示</em></p>
+<h3 id="在标题中使用参数"><a href="#在标题中使用参数" class="headerlink" title="在标题中使用参数"></a>在标题中使用参数</h3><p>为了在标题中使用params，我们需要使用navigationOptions函数返回一个配置的对象。 我们可能会考虑在navigationOptions中使用this.props，但由于navigationOptions是组件的静态属性，它不会引用组件的实例，因此不能通过这种方式来获取属性。 但是，如果我们将navigationOptions作为一个函数，那么React Navigation在调用它时，会传入一个包含{navigation，navigationOptions，screenProps}三种属性的对象 - 这样，我们就可以拿到navigation属性，这样我们可以通过navigation.getParam或navigation.state.params获取参数，并将其用作标题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = (&#123; navigation &#125;) =&gt; &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      title: navigation.getParam(&apos;otherParam&apos;, &apos;A Nested Details Screen&apos;),</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>传递给navigationOptions函数的参数是具有以下属性的对象：</p>
+<ol>
+<li>navigation</li>
+<li>screenProps</li>
+<li>navigationOptions</li>
+</ol>
+<h3 id="通过setParams更新navigationOptions"><a href="#通过setParams更新navigationOptions" class="headerlink" title="通过setParams更新navigationOptions"></a>通过setParams更新navigationOptions</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* Inside of render() */</span><br><span class="line">&lt;Button</span><br><span class="line">  title=&quot;Update the title&quot;</span><br><span class="line">  onPress=&#123;() =&gt; this.props.navigation.setParams(&#123;otherParam: &apos;Updated!&apos;&#125;)&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="调整标题样式"><a href="#调整标题样式" class="headerlink" title="调整标题样式"></a>调整标题样式</h3><ul>
+<li>headerStyle：应用于标题View整体样式。例如在其中设置backgroundColor ，则会作为整个标题栏的背景色</li>
+<li>headerTintColor：返回按钮和标题都会使用该颜色作为自己的颜色</li>
+<li>headerTitleStyle：用于自定义标题字体的样式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    title: &apos;Home&apos;,</span><br><span class="line">    headerStyle: &#123;</span><br><span class="line">      backgroundColor: &apos;#f4511e&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    headerTintColor: &apos;#fff&apos;,</span><br><span class="line">    headerTitleStyle: &#123;</span><br><span class="line">      fontWeight: &apos;bold&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>上边的配置只会作用于Home页面，当我们切换到另外一个页面，会变回默认的样式。在下一小节，我们将会讨论如何在多个页面间共享navigationOptions</em></p>
+<h3 id="在页面间共享navigationOptions"><a href="#在页面间共享navigationOptions" class="headerlink" title="在页面间共享navigationOptions"></a>在页面间共享navigationOptions</h3><p>通常多个页面会使用相似的标题栏。 例如，您公司的品牌颜色可能为红色，因此您希望标题背景颜色为红色，淡色为白色。 当你运行我们的例子，会注意到当您导航到DetailsScreen时，颜色将恢复为默认值。 如果我们必须将navigationOptions标题样式属性从HomeScreen复制到DetailsScreen，以及我们在应用程序中使用的每个屏幕组件，那将会是一个很糟糕的体验。 幸运的是，我们不需要这么麻烦，可以将直接将配置移动到堆栈导航器上，达到多个页面的navigationOptions共享。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    title: &apos;Home&apos;,</span><br><span class="line">    /* No more header config here! */</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* other code... */</span><br><span class="line"></span><br><span class="line">const RootStack = createStackNavigator(</span><br><span class="line">  &#123;</span><br><span class="line">    Home: HomeScreen,</span><br><span class="line">    Details: DetailsScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    initialRouteName: &apos;Home&apos;,</span><br><span class="line">    /* The header config from HomeScreen is now here */</span><br><span class="line">    navigationOptions: &#123;</span><br><span class="line">      headerStyle: &#123;</span><br><span class="line">        backgroundColor: &apos;#f4511e&apos;,</span><br><span class="line">      &#125;,</span><br><span class="line">      headerTintColor: &apos;#fff&apos;,</span><br><span class="line">      headerTitleStyle: &#123;</span><br><span class="line">        fontWeight: &apos;bold&apos;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>按照以上的配置，所有在RootStack配置的页面，都会共享navigationOptions配置的样式。那我们能否替换共享的navigationOptions属性呢？</p>
+<h3 id="覆盖共享的navigationOptions"><a href="#覆盖共享的navigationOptions" class="headerlink" title="覆盖共享的navigationOptions"></a>覆盖共享的navigationOptions</h3><p>当页面组件上指定的navigationOptions属性与其父堆栈导航器的navigationOptions属性相同时，页面组件上的选项会决定最终的效果。 让我们使用这些知识来反转细节屏幕上的背景和色调。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = (&#123; navigation, navigationOptions &#125;) =&gt; &#123;</span><br><span class="line">    const &#123; params &#125; = navigation.state;</span><br><span class="line"></span><br><span class="line">    return &#123;</span><br><span class="line">      title: params ? params.otherParam : &apos;A Nested Details Screen&apos;,</span><br><span class="line">      /* These values are used instead of the shared configuration! */</span><br><span class="line">      headerStyle: &#123;</span><br><span class="line">        backgroundColor: navigationOptions.headerTintColor,</span><br><span class="line">      &#125;,</span><br><span class="line">      headerTintColor: navigationOptions.headerStyle.backgroundColor,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用自定义组件替换默认标题"><a href="#使用自定义组件替换默认标题" class="headerlink" title="使用自定义组件替换默认标题"></a>使用自定义组件替换默认标题</h3><p>有时你不仅仅是希望更改标题的文本和样式，而是其他更多的变化 - 例如，你可能希望渲染图像代替标题，或将标题设置为按钮。 在这些情况下，您可以使用自定义组件完全覆盖默认显示标题的组件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class LogoTitle extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;Image</span><br><span class="line">        source=&#123;require(&apos;./spiro.png&apos;)&#125;</span><br><span class="line">        style=&#123;&#123; width: 30, height: 30 &#125;&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    // headerTitle instead of title</span><br><span class="line">    headerTitle: &lt;LogoTitle /&gt;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-【React-Navigation】四、页面的参数传递"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -542,6 +612,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/01/16/【QT】多线程-实现多线程的几种方式/">【QT】多线程 -- 实现多线程的几种方式</a></h6>
+              <span>January 16, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/01/16/【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例/">【QT】进程间通信 -- 使用命名管道实现qt应用程序只运行一个实例</a></h6>
               <span>January 16, 2020</span>
             </div>
@@ -596,18 +678,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】全局换肤/">【QT】全局换肤</a></h6>
-              <span>January 15, 2020</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -617,7 +687,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -628,7 +698,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

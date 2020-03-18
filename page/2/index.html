@@ -154,6 +154,59 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-【QT】动态添加-Horizontal-Line-和-Vertical-Line"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/01/14/【QT】动态添加-Horizontal-Line-和-Vertical-Line/">【QT】动态添加 Horizontal Line 和 Vertical Line</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/01/14/【QT】动态添加-Horizontal-Line-和-Vertical-Line/" class="article-date">
+	  <time datetime="2020-01-14T02:12:09.000Z" itemprop="datePublished">January 14, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>根据业务的需求，有时我们需要用到一条水平分割线或者一条垂直分割线，在Designer里边，我们可以直接拖动一个Horizontal Line/Vertical Line来实现需求。但假如需要动态添加呢？在QT Assistant里边查找QLine/Line，发现并没有满足该需求的控件。但在qss中配置分割线的样式时，发现选择器使用的是QFrame，于是去翻查QFrame的属性等，发现QFrame有个Shape的概念，里边就有两个枚举：HLine和VLine。这就是我们实现的方法</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>创建一个QFrame</li>
+<li>调用setFrameShape方法设置形状</li>
+<li>通过setStyleSheet设置样式</li>
+</ol>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QFrame *m_frameLine = new QFrame;</span><br><span class="line">m_frameLine-&gt;setFrameShape(QFrame::HLine);</span><br><span class="line">m_frameLine-&gt;setFixedSize(QSize(360, 1));</span><br><span class="line">m_frameLine-&gt;setStyleSheet(&quot;color:rgba(170,170,170,1);&quot;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/QT/">QT</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-【React-Native】一、原生UI组件"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -683,60 +736,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-【React-Navigation】六、标题栏按钮"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】六、标题栏按钮/">【React Navigation】六、标题栏按钮</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】六、标题栏按钮/" class="article-date">
-	  <time datetime="2018-08-29T06:05:33.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="在标题栏增加按钮"><a href="#在标题栏增加按钮" class="headerlink" title="在标题栏增加按钮"></a>在标题栏增加按钮</h3><p>与标题交互的最常用方法是点击标题左侧或右侧的按钮。 让我们在标题的右侧添加一个按钮（在整个屏幕上最难触摸的地方之一，取决于手指和手机大小，但也是放置按钮的正常位置）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    headerTitle: &lt;LogoTitle /&gt;,</span><br><span class="line">    headerRight: (</span><br><span class="line">      &lt;Button</span><br><span class="line">        onPress=&#123;() =&gt; alert(&apos;This is a button!&apos;)&#125;</span><br><span class="line">        title=&quot;Info&quot;</span><br><span class="line">        color=&quot;#fff&quot;</span><br><span class="line">      /&gt;</span><br><span class="line">    ),</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="标题栏与屏幕组件的交互"><a href="#标题栏与屏幕组件的交互" class="headerlink" title="标题栏与屏幕组件的交互"></a>标题栏与屏幕组件的交互</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = (&#123; navigation &#125;) =&gt; &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      headerTitle: &lt;LogoTitle /&gt;,</span><br><span class="line">      headerRight: (</span><br><span class="line">        &lt;Button</span><br><span class="line">          onPress=&#123;navigation.getParam(&apos;increaseCount&apos;)&#125;</span><br><span class="line">          title=&quot;+1&quot;</span><br><span class="line">          color=&quot;#fff&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">      ),</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.props.navigation.setParams(&#123; increaseCount: this._increaseCount &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  state = &#123;</span><br><span class="line">    count: 0,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  _increaseCount = () =&gt; &#123;</span><br><span class="line">    this.setState(&#123; count: this.state.count + 1 &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* later in the render function we display the count */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="自定义返回按钮"><a href="#自定义返回按钮" class="headerlink" title="自定义返回按钮"></a>自定义返回按钮</h3><p>createStackNavigator为后退按钮提供特定于平台的默认值。 在iOS上，默认会在按钮旁边显示一行文字，当有足够的空间放置时直接显示上一屏幕的标题，否则显示“Back”。</p>
-<p>您可以通过headerBackTitle和headerTruncatedBackTitle属性来更改更改该文字。</p>
-<p>假如要自定义后退按钮图像，可以使用headerBackImage属性。</p>
-<h3 id="覆盖返回按钮"><a href="#覆盖返回按钮" class="headerlink" title="覆盖返回按钮"></a>覆盖返回按钮</h3><p>只要用户可以从当前屏幕返回上一级，后退按钮将自动呈现在堆栈导航器中 - 换句话说，只要堆栈中有多个屏幕，就会呈现后退按钮。</p>
-<p>一般来说，这就是满足我们的需求了。 但是在某些情况下，您可能自定义后退按钮来修改这种模式，在这种情况下，您可以将headerLeft选项设置为想要呈现的React元素，就像我们使用headerRight一样。 或者，headerLeft选项也接受React Component，例如，可重写后退按钮的onPress事件。</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -833,6 +832,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/03/18/【QT】使用vld进行内存泄漏检测/">【QT】使用vld进行内存泄漏检测</a></h6>
+              <span>March 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/01/16/【QT】多线程-实现多线程的几种方式/">【QT】多线程 -- 实现多线程的几种方式</a></h6>
               <span>January 16, 2020</span>
             </div>
@@ -887,18 +898,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-QLocalServer-QLocalSocket（命名管道）/">【QT】进程间通信 -- QLocalServer/QLocalSocket（命名管道）</a></h6>
-              <span>January 15, 2020</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -908,7 +907,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -919,7 +918,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

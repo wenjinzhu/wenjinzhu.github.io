@@ -13,23 +13,25 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>Categories | King的技术小栈</title>
+  <title>【qt】qt5.9解析和构建json字符串 | King的技术小栈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta name="description" content="勤靡余劳，心有常闲">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="前言QT5开始新增加几个相关类，专门用于处理JSON：  QJsonDocument：provides a way to read and write JSON documents，用于读写json格式的文档 QJsonArray：encapsulates a JSON array，封装json数组 QJsonObject：encapsulates a JSON object，封装json对象 Q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【QT】qt5.9解析和构建Json字符串">
+<meta property="og:url" content="http://yoursite.com/2020/03/26/【QT】qt5.9解析和构建Json字符串/index.html">
 <meta property="og:site_name" content="King的技术小栈">
-<meta property="og:description" content="勤靡余劳，心有常闲">
+<meta property="og:description" content="前言QT5开始新增加几个相关类，专门用于处理JSON：  QJsonDocument：provides a way to read and write JSON documents，用于读写json格式的文档 QJsonArray：encapsulates a JSON array，封装json数组 QJsonObject：encapsulates a JSON object，封装json对象 Q">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-31T01:17:02.000Z">
+<meta property="og:image" content="http://yoursite.com/2020/03/26/【QT】qt5.9解析和构建Json字符串/qt_json.png">
+<meta property="og:updated_time" content="2020-03-26T07:33:34.467Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="勤靡余劳，心有常闲">
+<meta name="twitter:title" content="【QT】qt5.9解析和构建Json字符串">
+<meta name="twitter:description" content="前言QT5开始新增加几个相关类，专门用于处理JSON：  QJsonDocument：provides a way to read and write JSON documents，用于读写json格式的文档 QJsonArray：encapsulates a JSON array，封装json数组 QJsonObject：encapsulates a JSON object，封装json对象 Q">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/26/【QT】qt5.9解析和构建Json字符串/qt_json.png">
   
     <link rel="alternate" href="/atom.xml" title="King的技术小栈" type="application/atom+xml">
   
@@ -79,7 +81,7 @@ var themeMenus = {};
 </script>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   <header id="allheader" class="site-header" role="banner">
@@ -153,7 +155,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-【QT】qt5.9解析和构建Json字符串" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -161,7 +163,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      categories
+      【QT】qt5.9解析和构建Json字符串
     </h1>
   
 
@@ -169,8 +171,8 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/categories/index.html" class="article-date">
-	  <time datetime="2018-08-31T01:16:35.000Z" itemprop="datePublished">August 31, 2018</time>
+	Posted on <a href="/2020/03/26/【QT】qt5.9解析和构建Json字符串/" class="article-date">
+	  <time datetime="2020-03-26T05:59:29.000Z" itemprop="datePublished">March 26, 2020</time>
 	</a>
 
       
@@ -181,7 +183,31 @@ var themeMenus = {};
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>QT5开始新增加几个相关类，专门用于处理JSON：</p>
+<ol>
+<li>QJsonDocument：provides a way to read and write JSON documents，用于读写json格式的文档</li>
+<li>QJsonArray：encapsulates a JSON array，封装json数组</li>
+<li>QJsonObject：encapsulates a JSON object，封装json对象</li>
+<li>QJsonValue：encapsulates a value in JSON，封装json的值</li>
+<li>QJsonParseError：used to report errors during JSON parsing，报告json解析过程中出现的异常</li>
+</ol>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><ol>
+<li>直接使用QJsonObject封装或解析json对象，直接使用QJsonArray封装或解析json数组</li>
+<li>使用QVariantMap封装或解析json对象，使用QVariantList封装或解析json数组</li>
+</ol>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><ol>
+<li><p>json对象的封装与解析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 使用QJsonObject</span><br><span class="line">QJsonObject json;</span><br><span class="line">json.insert(&quot;number&quot;, 1);</span><br><span class="line">json.insert(&quot;type&quot;, &quot;QJsonObject&quot;);</span><br><span class="line">QJsonDocument document;</span><br><span class="line">document.setObject(json);</span><br><span class="line">QByteArray m_byteArray = document.toJson(QJsonDocument::Compact);</span><br><span class="line">QJsonParseError m_jsonError;</span><br><span class="line">QJsonDocument m_jsonDocument = QJsonDocument::fromJson(m_byteArray, &amp;m_jsonError);</span><br><span class="line"></span><br><span class="line">// 使用QVariantMap</span><br><span class="line">QVariantMap m_map;</span><br><span class="line">m_map.insert(&quot;number&quot;, 1&quot;);</span><br><span class="line">m_map.insert(&quot;type&quot;, &quot;QJsonObject&quot;);</span><br><span class="line">QJsonDocument m_jsonDocument = QJsonDocument::fromVariant(m_map);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>json数组的封装与解析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 使用QJsonArray</span><br><span class="line">QJsonArray m_jsonArray;</span><br><span class="line">for(int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">    QJsonObject jsonObject;</span><br><span class="line">    jsonObject.insert(&quot;number&quot;, QString::number(i+1));</span><br><span class="line">    jsonObject.insert(&quot;type&quot;, &quot;QJsonObject&quot;);</span><br><span class="line">    m_jsonArray.append(jsonObject);</span><br><span class="line">&#125;</span><br><span class="line">QJsonDocument m_jsonDoc;</span><br><span class="line">m_jsonDoc.setArray(m_jsonArray);</span><br><span class="line">QByteArray m_byteArray = m_jsonDoc.toJson(QJsonDocument::Compact);</span><br><span class="line">QJsonParseError m_jsonError;</span><br><span class="line">QJsonDocument m_jsonDocument = QJsonDocument::fromJson(m_byteArray, &amp;m_jsonError);</span><br><span class="line"></span><br><span class="line">// 使用QVariantList</span><br><span class="line">QVariantList m_list;</span><br><span class="line">for(int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">    QVariantMap m_map;</span><br><span class="line">	m_map.insert(&quot;number&quot;, 1);</span><br><span class="line">	m_map.insert(&quot;type&quot;, &quot;QJsonObject&quot;);</span><br><span class="line">	m_list.append(m_map);</span><br><span class="line">&#125;</span><br><span class="line">QJsonDocument m_jsonDocument = QJsonDocument::fromVariant(m_list);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ol>
+<li>QJsonDocument::Compact(紧凑型)，这是转换后得到的字符串格式，另外还有QJsonDocument::Indented<img src="/2020/03/26/【QT】qt5.9解析和构建Json字符串/qt_json.png" title="Qt-Assistant的直观例子"></li>
+<li>解析后，使用前最好通过QJsonDocument::isNull()方法来判断当前document是否可用</li>
+</ol>
+
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -218,194 +244,30 @@ var themeMenus = {};
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/18/【QT】使用vld进行内存泄漏检测/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【QT】使用vld进行内存泄漏检测</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
 <!-- Table of Contents -->
 
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
     
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方式"><span class="nav-number">2.</span> <span class="nav-text">使用方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体代码"><span class="nav-number">3.</span> <span class="nav-text">具体代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他注意事项"><span class="nav-number">4.</span> <span class="nav-text">其他注意事项</span></a></li></ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    <div class="widget-wrap" style="margin: 20px 0;">
-	<div id="search-form-wrap">
-
-    <form class="search-form">
-        <label style="width: 75%;">
-            <span class="screen-reader-text">Search for:</span>
-            <input type="search" class="search-field" style="height: 42px;" placeholder=" Search…" value="" name="s" title="Search for:">
-        </label>
-        <input type="submit" class="search-form-submit" value="Search">
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Connect With Us</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/wenjinzhu" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>Recent Posts</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/03/26/【QT】qt5.9解析和构建Json字符串/">【QT】qt5.9解析和构建Json字符串</a></h6>
-              <span>March 26, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/03/18/【QT】使用vld进行内存泄漏检测/">【QT】使用vld进行内存泄漏检测</a></h6>
-              <span>March 18, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/16/【QT】多线程-实现多线程的几种方式/">【QT】多线程 -- 实现多线程的几种方式</a></h6>
-              <span>January 16, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/16/【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例/">【QT】进程间通信 -- 使用命名管道实现qt应用程序只运行一个实例</a></h6>
-              <span>January 16, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/">【QT】进程间通信 -- 字节数组与int之间的转换</a></h6>
-              <span>January 15, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-粘包，拆包/">【QT】进程间通信 -- 粘包，拆包</a></h6>
-              <span>January 15, 2020</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
       <footer id="footer" class="site-footer">

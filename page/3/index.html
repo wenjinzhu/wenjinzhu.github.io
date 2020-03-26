@@ -1,600 +1,536 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="" class="loading">
 <head>
-  <meta charset="utf-8">
-
-  <!-- PACE Progress Bar START -->
-  
-    <script src="/js/pace.min.js"></script>
-    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
-  
-  
-
-  <!-- PACE Progress Bar START -->
-
-  
-  <title>King的技术小栈</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  
-  
-  
-  <meta name="description" content="勤靡余劳，心有常闲">
-<meta property="og:type" content="website">
-<meta property="og:title" content="King的技术小栈">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
-<meta property="og:site_name" content="King的技术小栈">
-<meta property="og:description" content="勤靡余劳，心有常闲">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="King的技术小栈">
-<meta name="twitter:description" content="勤靡余劳，心有常闲">
-  
-    <link rel="alternate" href="/atom.xml" title="King的技术小栈" type="application/atom+xml">
-  
-  <link rel="icon" href="/css/images/logo.jpg">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-    
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <script src="/js/jquery-3.1.1.min.js"></script>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.css" >
-  <link rel="stylesheet" href="/css/hiero.css" >
-  <link rel="stylesheet" href="/css/glyphs.css" >
-  
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="/css/my.css">
-  <!-- Google Adsense -->
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-0123456789ABCDEF",
-          enable_page_level_ads: true
-      });
-  </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>King的技术小栈</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="description" content="勤靡余劳，心有常闲,"> 
+    <meta name="author" content="King"> 
+    <link rel="alternative" href="atom.xml" title="King的技术小栈" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link href="https://fonts.loli.net/css?family=Roboto+Mono|Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+    <link rel="stylesheet" href="/css/obsidian.css">
+    <link rel="stylesheet" href="/css/ball-atom.min.css">
 </head>
 
-<script>
-var themeMenus = {};
 
-  themeMenus["/"] = "Home"; 
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">King的技术小栈</span>
+    <div id="loader"></div>
+    <div class="nav">
+    <ul id="menu-menu" class="menu">
+        
+        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/whoami/" title="ABOUT">ABOUT</a>
+        </li>
+        
+        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/categories/" title="CATEGORIES">CATEGORIES</a>
+        </li>
+        
+        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/tags/" title="TAGS">TAGS</a>
+        </li>
+        
+        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/archives/" title="ARCHIVES">ARCHIVES</a>
+        </li>
+        
+    </ul>
+    <p class="copyright" id="copyright">
+        &copy; 2020 King.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+    </p>
+</div>
 
-  themeMenus["/archives"] = "Archives"; 
-
-</script>
-
-
-  <body>
-
-
-  <header id="allheader" class="site-header" role="banner">
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
+<div id="container">
+    
+<div class="search-box">
+    <form class="site-search-form">
+        <span class="iconfont icon-search"></span>
+        <input type="text" id="local-search-input" class="st-search-input" />
+        <div class="iconfont icon-cross search-box-close"></div>
+    </form>
+    <div class="search-scrollable">
+        <div id="local-search-result" class="local-search-result-cls" data-initialise="Initialising search index..."
+            data-start="Please input search keywords." data-empty="No result found, please try other keywords.">
+            <span>Please input search keywords.</span>
+        </div>
+    </div>
+</div>
+<div id="header">
+    <div>
+        <div class="logo animated fadeInDown">
+            <img src="/img/favicon.png" alt="">
+            <a class="image-logo" href="/"></a>
+        </div>
+        <ul id="menu-menu" class="menu text-menu">
             
-              <a href="/" rel="home" >
-                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src=" /css/images/logo.jpg">
-              </a>
+            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="/whoami/" title="ABOUT" class="menu-link">ABOUT</a>
+            </li>
             
-          </h1>
-
-          
-            <div class="site-description">勤靡余劳，心有常闲</div>
-          
+            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="/categories/" title="CATEGORIES" class="menu-link">CATEGORIES</a>
+            </li>
             
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-            <div class="clearfix sf-menu">
+            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="/tags/" title="TAGS" class="menu-link">TAGS</a>
+            </li>
+            
+            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="/archives/" title="ARCHIVES" class="menu-link">ARCHIVES</a>
+            </li>
+            
+            
+        </ul>
+        <div class="iconfont icon-menu switchmenu gradient-text animated fadeInDown"></div>
+    </div>
+</div>
+<div id="screen">
+    <div id="mark">
+        <div class="cover animated fadeIn" style="
+            animation-delay: 900ms;
+            animation-duration: 2.8s;
+            background-image:
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
+                url(/img/cover.jpg);">
+        </div>
+    </div>
+    
+    <div id="post0" class="else">
+        <p class="animated fadeInDown">
+            
+            <a href="/categories/React Navigation"><b>「
+                </b>REACT NAVIGATION<b> 」</b></a>
+            
+            August 29, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown">
+            <a href="/2018/08/29/【React-Navigation】七、createTabNavigator-选项卡导航器/" title="【React Navigation】七、createTabNavigator-选项卡导航器" class="posttitle">【React Navigation】七、createTabNavigator-选项卡导航器</a></h3>
+        
+        <p class="post-count animated fadeInDown">
+            
+            <span>
+                <b class="iconfont icon-text2"></b> <i>Words count</i>
+                23k
+            </span>
+            
+            
+            <span>
+                <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                21 mins.
+            </span>
+            
+            
+        </p>
+        
+        
+        <div class="md-content animated fadeIn">
+            
+            <p>移动应用程序中最常见的导航风格可能是基于标签选项卡。这些选项卡可能放置在屏幕底部或标题下方。</p>
+<p>本指南介绍createBottomTabNavigator的使用，另外，你还可以使用createMaterialBottomT...</p>
+            
+            <span class="read-more"><a href="/2018/08/29/【React-Navigation】七、createTabNavigator-选项卡导航器/" title="Read article" class="posttitle">Read article</a>
+                <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+    
+</div>
 
-              <ul id="main-nav" class="nmenu sf-js-enabled">
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
-                    
-              </ul>
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="typed-text"></span>
+                </p>
             </div>
-          </nav>
-
-
-      </div>
-  </div>
-</header>
-
-
-  <div id="originBgDiv" style="background: #fff; width: 100%;">
-
-      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
-        <img id="originBg" width="100%" alt="" src="">
-      </div>
-
-  </div>
-
-  <script>
-  function setAboutIMG(){
-      var imgUrls = "css/images/logo.jpg,css/images/background-cover.jpg".split(",");
-      var random = Math.floor((Math.random() * imgUrls.length ));
-      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-        document.getElementById("originBg").src=imgUrls[random];
-      } else {
-        document.getElementById("originBg").src='/' + imgUrls[random];
-      }
-  }
-  bgDiv=document.getElementById("originBgDiv");
-  if(location.pathname.match('about')){
-    setAboutIMG();
-    bgDiv.style.display='block';
-  }else{
-    bgDiv.style.display='none';
-  }
-  </script>
-
-
-
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
-        
-          <section id="main">
-  
-    <article id="post-【React-Navigation】七、createTabNavigator-选项卡导航器"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】七、createTabNavigator-选项卡导航器/">【React Navigation】七、createTabNavigator-选项卡导航器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】七、createTabNavigator-选项卡导航器/" class="article-date">
-	  <time datetime="2018-08-29T06:06:19.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
+        </div>
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>移动应用程序中最常见的导航风格可能是基于标签选项卡。这些选项卡可能放置在屏幕底部或标题下方。</p>
+</div>
+
+    <div id="primary">
+        
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React Navigation">
+                  <b>「 </b>REACT NAVIGATION<b> 」</b>
+                </a>
+            
+            August 29, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/29/【React-Navigation】七、createTabNavigator-选项卡导航器/" title="【React Navigation】七、createTabNavigator-选项卡导航器" class="posttitle">【React Navigation】七、createTabNavigator-选项卡导航器</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        23k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        21 mins.
+                    </span>
+                
+                
+            </p>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <p>移动应用程序中最常见的导航风格可能是基于标签选项卡。这些选项卡可能放置在屏幕底部或标题下方。</p>
 <p>本指南介绍createBottomTabNavigator的使用，另外，你还可以使用createMaterialBottomTabNavigator和createMaterialTopTabNavigator为应用程序添加选项卡。</p>
-<h3 id="选项卡导航条的小例子"><a href="#选项卡导航条的小例子" class="headerlink" title="选项卡导航条的小例子"></a>选项卡导航条的小例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; Text, View &#125; from &apos;react-native&apos;;</span><br><span class="line">// 引用createBottomTabNavigator模块</span><br><span class="line">import &#123; createBottomTabNavigator &#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, justifyContent: &apos;center&apos;, alignItems: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Home!&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class SettingsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, justifyContent: &apos;center&apos;, alignItems: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Settings!&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default createBottomTabNavigator(&#123;</span><br><span class="line">  Home: HomeScreen,</span><br><span class="line">  Settings: SettingsScreen,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="自定义外观"><a href="#自定义外观" class="headerlink" title="自定义外观"></a>自定义外观</h3><p>这有点类似于自定义堆栈导航器的方式 - 在初始化选项卡导航器时可以设置一些属性，可以通过navigationOptions中给每个屏幕自定义其他的一些属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// You can import Ionicons from @expo/vector-icons if you use Expo or</span><br><span class="line">// react-native-vector-icons/Ionicons otherwise.</span><br><span class="line">import Ionicons from &apos;react-native-vector-icons/Ionicons&apos;;</span><br><span class="line">import &#123; createBottomTabNavigator &#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">export default createBottomTabNavigator(</span><br><span class="line">  &#123;</span><br><span class="line">    Home: HomeScreen,</span><br><span class="line">    Settings: SettingsScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    navigationOptions: (&#123; navigation &#125;) =&gt; (&#123;</span><br><span class="line">      tabBarIcon: (&#123; focused, tintColor &#125;) =&gt; &#123;</span><br><span class="line">        const &#123; routeName &#125; = navigation.state;</span><br><span class="line">        let iconName;</span><br><span class="line">        if (routeName === &apos;Home&apos;) &#123;</span><br><span class="line">          iconName = `ios-information-circle$&#123;focused ? &apos;&apos; : &apos;-outline&apos;&#125;`;</span><br><span class="line">        &#125; else if (routeName === &apos;Settings&apos;) &#123;</span><br><span class="line">          iconName = `ios-options$&#123;focused ? &apos;&apos; : &apos;-outline&apos;&#125;`;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // You can return any component that you like here! We usually use an</span><br><span class="line">        // icon component from react-native-vector-icons</span><br><span class="line">        return &lt;Ionicons name=&#123;iconName&#125; size=&#123;25&#125; color=&#123;tintColor&#125; /&gt;;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">    tabBarOptions: &#123;</span><br><span class="line">      activeTintColor: &apos;tomato&apos;,</span><br><span class="line">      inactiveTintColor: &apos;gray&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h3 id="选项卡间切换"><a href="#选项卡间切换" class="headerlink" title="选项卡间切换"></a>选项卡间切换</h3><p>我们可以通过api：this.props.navigation.navigate来进行选项卡间的切换</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; Button, Text, View &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; Ionicons &#125; from &apos;@expo/vector-icons&apos;; // Version can be specified in package.json</span><br><span class="line">import &#123; TabNavigator, TabBarBottom &#125; from &apos;react-navigation&apos;; // Version can be specified in package.json</span><br><span class="line"></span><br><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, justifyContent: &apos;center&apos;, alignItems: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Home!&lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Settings&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Settings&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class SettingsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, justifyContent: &apos;center&apos;, alignItems: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Settings!&lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Home&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Home&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default TabNavigator(</span><br><span class="line">  &#123;</span><br><span class="line">    Home: &#123; screen: HomeScreen &#125;,</span><br><span class="line">    Settings: &#123; screen: SettingsScreen &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    navigationOptions: (&#123; navigation &#125;) =&gt; (&#123;</span><br><span class="line">      tabBarIcon: (&#123; focused, tintColor &#125;) =&gt; &#123;</span><br><span class="line">        const &#123; routeName &#125; = navigation.state;</span><br><span class="line">        let iconName;</span><br><span class="line">        if (routeName === &apos;Home&apos;) &#123;</span><br><span class="line">          iconName = `ios-information-circle$&#123;focused ? &apos;&apos; : &apos;-outline&apos;&#125;`;</span><br><span class="line">        &#125; else if (routeName === &apos;Settings&apos;) &#123;</span><br><span class="line">          iconName = `ios-options$&#123;focused ? &apos;&apos; : &apos;-outline&apos;&#125;`;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // You can return any component that you like here! We usually use an</span><br><span class="line">        // icon component from react-native-vector-icons</span><br><span class="line">        return &lt;Ionicons name=&#123;iconName&#125; size=&#123;25&#125; color=&#123;tintColor&#125; /&gt;;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">    tabBarComponent: TabBarBottom,</span><br><span class="line">    tabBarPosition: &apos;bottom&apos;,</span><br><span class="line">    tabBarOptions: &#123;</span><br><span class="line">      activeTintColor: &apos;tomato&apos;,</span><br><span class="line">      inactiveTintColor: &apos;gray&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    animationEnabled: false,</span><br><span class="line">    swipeEnabled: false,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h3 id="选项卡的导航器"><a href="#选项卡的导航器" class="headerlink" title="选项卡的导航器"></a>选项卡的导航器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; Button, Text, View &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; Ionicons &#125; from &apos;@expo/vector-icons&apos;; // Version can be specified in package.json</span><br><span class="line">import &#123; StackNavigator, TabNavigator, TabBarBottom &#125; from &apos;react-navigation&apos;; // Version can be specified in package.json</span><br><span class="line"></span><br><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, justifyContent: &apos;center&apos;, alignItems: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Home!&lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Settings&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Settings&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Details&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Details&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class SettingsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, justifyContent: &apos;center&apos;, alignItems: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Settings!&lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Home&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Home&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Details&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Details&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, justifyContent: &apos;center&apos;, alignItems: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Details!&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const HomeStack = StackNavigator(&#123;</span><br><span class="line">  Home: &#123; screen: HomeScreen &#125;,</span><br><span class="line">  Details: &#123; screen: DetailsScreen &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const SettingsStack = StackNavigator(&#123;</span><br><span class="line">  Settings: &#123; screen: SettingsScreen &#125;,</span><br><span class="line">  Details: &#123; screen: DetailsScreen &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default TabNavigator(</span><br><span class="line">  &#123;</span><br><span class="line">    Home: &#123; screen: HomeStack &#125;,</span><br><span class="line">    Settings: &#123; screen: SettingsStack &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    navigationOptions: (&#123; navigation &#125;) =&gt; (&#123;</span><br><span class="line">      tabBarIcon: (&#123; focused, tintColor &#125;) =&gt; &#123;</span><br><span class="line">        const &#123; routeName &#125; = navigation.state;</span><br><span class="line">        let iconName;</span><br><span class="line">        if (routeName === &apos;Home&apos;) &#123;</span><br><span class="line">          iconName = `ios-information-circle$&#123;focused ? &apos;&apos; : &apos;-outline&apos;&#125;`;</span><br><span class="line">        &#125; else if (routeName === &apos;Settings&apos;) &#123;</span><br><span class="line">          iconName = `ios-options$&#123;focused ? &apos;&apos; : &apos;-outline&apos;&#125;`;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // You can return any component that you like here! We usually use an</span><br><span class="line">        // icon component from react-native-vector-icons</span><br><span class="line">        return &lt;Ionicons name=&#123;iconName&#125; size=&#123;25&#125; color=&#123;tintColor&#125; /&gt;;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">    tabBarComponent: TabBarBottom,</span><br><span class="line">    tabBarPosition: &apos;bottom&apos;,</span><br><span class="line">    tabBarOptions: &#123;</span><br><span class="line">      activeTintColor: &apos;tomato&apos;,</span><br><span class="line">      inactiveTintColor: &apos;gray&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    animationEnabled: false,</span><br><span class="line">    swipeEnabled: false,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
+<h3 id="选项卡导航条的小例子"><a href="#选项卡导航条的小例子" class="headerlink" title="选项卡导航条的小例子"></a>选项卡导航条的小例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react...</span></pre></td></tr></table></figure>
             
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-【React-Navigation】六、标题栏按钮"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】六、标题栏按钮/">【React Navigation】六、标题栏按钮</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】六、标题栏按钮/" class="article-date">
-	  <time datetime="2018-08-29T06:05:33.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
+            <span class="read-more"><a href="/2018/08/29/【React-Navigation】七、createTabNavigator-选项卡导航器/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="在标题栏增加按钮"><a href="#在标题栏增加按钮" class="headerlink" title="在标题栏增加按钮"></a>在标题栏增加按钮</h3><p>与标题交互的最常用方法是点击标题左侧或右侧的按钮。 让我们在标题的右侧添加一个按钮（在整个屏幕上最难触摸的地方之一，取决于手指和手机大小，但也是放置按钮的正常位置）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    headerTitle: &lt;LogoTitle /&gt;,</span><br><span class="line">    headerRight: (</span><br><span class="line">      &lt;Button</span><br><span class="line">        onPress=&#123;() =&gt; alert(&apos;This is a button!&apos;)&#125;</span><br><span class="line">        title=&quot;Info&quot;</span><br><span class="line">        color=&quot;#fff&quot;</span><br><span class="line">      /&gt;</span><br><span class="line">    ),</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="标题栏与屏幕组件的交互"><a href="#标题栏与屏幕组件的交互" class="headerlink" title="标题栏与屏幕组件的交互"></a>标题栏与屏幕组件的交互</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = (&#123; navigation &#125;) =&gt; &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      headerTitle: &lt;LogoTitle /&gt;,</span><br><span class="line">      headerRight: (</span><br><span class="line">        &lt;Button</span><br><span class="line">          onPress=&#123;navigation.getParam(&apos;increaseCount&apos;)&#125;</span><br><span class="line">          title=&quot;+1&quot;</span><br><span class="line">          color=&quot;#fff&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">      ),</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.props.navigation.setParams(&#123; increaseCount: this._increaseCount &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  state = &#123;</span><br><span class="line">    count: 0,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  _increaseCount = () =&gt; &#123;</span><br><span class="line">    this.setState(&#123; count: this.state.count + 1 &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* later in the render function we display the count */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="自定义返回按钮"><a href="#自定义返回按钮" class="headerlink" title="自定义返回按钮"></a>自定义返回按钮</h3><p>createStackNavigator为后退按钮提供特定于平台的默认值。 在iOS上，默认会在按钮旁边显示一行文字，当有足够的空间放置时直接显示上一屏幕的标题，否则显示“Back”。</p>
-<p>您可以通过headerBackTitle和headerTruncatedBackTitle属性来更改更改该文字。</p>
-<p>假如要自定义后退按钮图像，可以使用headerBackImage属性。</p>
-<h3 id="覆盖返回按钮"><a href="#覆盖返回按钮" class="headerlink" title="覆盖返回按钮"></a>覆盖返回按钮</h3><p>只要用户可以从当前屏幕返回上一级，后退按钮将自动呈现在堆栈导航器中 - 换句话说，只要堆栈中有多个屏幕，就会呈现后退按钮。</p>
-<p>一般来说，这就是满足我们的需求了。 但是在某些情况下，您可能自定义后退按钮来修改这种模式，在这种情况下，您可以将headerLeft选项设置为想要呈现的React元素，就像我们使用headerRight一样。 或者，headerLeft选项也接受React Component，例如，可重写后退按钮的onPress事件。</p>
+</div>
 
-      
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
     </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
+    <div class="else">
+        <p class="animated fadeInDown">
             
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-【React-Navigation】五、配置标题栏"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】五、配置标题栏/">【React Navigation】五、配置标题栏</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】五、配置标题栏/" class="article-date">
-	  <time datetime="2018-08-29T06:04:33.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="设置标题栏标题"><a href="#设置标题栏标题" class="headerlink" title="设置标题栏标题"></a>设置标题栏标题</h3><p>屏幕组件可以包含一个名为navigationOptions 的静态属性，它既是一个对象也是一个方法，里边包含了各种的属性配置。我们可以通过它里边的title属性来设置标题栏标题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    title: &apos;Home&apos;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    title: &apos;Details&apos;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em>createStackNavigator会使用平台的默认约定，IOS的标题会居中显示，而Android会靠左显示</em></p>
-<h3 id="在标题中使用参数"><a href="#在标题中使用参数" class="headerlink" title="在标题中使用参数"></a>在标题中使用参数</h3><p>为了在标题中使用params，我们需要使用navigationOptions函数返回一个配置的对象。 我们可能会考虑在navigationOptions中使用this.props，但由于navigationOptions是组件的静态属性，它不会引用组件的实例，因此不能通过这种方式来获取属性。 但是，如果我们将navigationOptions作为一个函数，那么React Navigation在调用它时，会传入一个包含{navigation，navigationOptions，screenProps}三种属性的对象 - 这样，我们就可以拿到navigation属性，这样我们可以通过navigation.getParam或navigation.state.params获取参数，并将其用作标题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = (&#123; navigation &#125;) =&gt; &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      title: navigation.getParam(&apos;otherParam&apos;, &apos;A Nested Details Screen&apos;),</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>传递给navigationOptions函数的参数是具有以下属性的对象：</p>
-<ol>
-<li>navigation</li>
-<li>screenProps</li>
-<li>navigationOptions</li>
-</ol>
-<h3 id="通过setParams更新navigationOptions"><a href="#通过setParams更新navigationOptions" class="headerlink" title="通过setParams更新navigationOptions"></a>通过setParams更新navigationOptions</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* Inside of render() */</span><br><span class="line">&lt;Button</span><br><span class="line">  title=&quot;Update the title&quot;</span><br><span class="line">  onPress=&#123;() =&gt; this.props.navigation.setParams(&#123;otherParam: &apos;Updated!&apos;&#125;)&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="调整标题样式"><a href="#调整标题样式" class="headerlink" title="调整标题样式"></a>调整标题样式</h3><ul>
-<li>headerStyle：应用于标题View整体样式。例如在其中设置backgroundColor ，则会作为整个标题栏的背景色</li>
-<li>headerTintColor：返回按钮和标题都会使用该颜色作为自己的颜色</li>
-<li>headerTitleStyle：用于自定义标题字体的样式</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    title: &apos;Home&apos;,</span><br><span class="line">    headerStyle: &#123;</span><br><span class="line">      backgroundColor: &apos;#f4511e&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    headerTintColor: &apos;#fff&apos;,</span><br><span class="line">    headerTitleStyle: &#123;</span><br><span class="line">      fontWeight: &apos;bold&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em>上边的配置只会作用于Home页面，当我们切换到另外一个页面，会变回默认的样式。在下一小节，我们将会讨论如何在多个页面间共享navigationOptions</em></p>
-<h3 id="在页面间共享navigationOptions"><a href="#在页面间共享navigationOptions" class="headerlink" title="在页面间共享navigationOptions"></a>在页面间共享navigationOptions</h3><p>通常多个页面会使用相似的标题栏。 例如，您公司的品牌颜色可能为红色，因此您希望标题背景颜色为红色，淡色为白色。 当你运行我们的例子，会注意到当您导航到DetailsScreen时，颜色将恢复为默认值。 如果我们必须将navigationOptions标题样式属性从HomeScreen复制到DetailsScreen，以及我们在应用程序中使用的每个屏幕组件，那将会是一个很糟糕的体验。 幸运的是，我们不需要这么麻烦，可以将直接将配置移动到堆栈导航器上，达到多个页面的navigationOptions共享。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    title: &apos;Home&apos;,</span><br><span class="line">    /* No more header config here! */</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* other code... */</span><br><span class="line"></span><br><span class="line">const RootStack = createStackNavigator(</span><br><span class="line">  &#123;</span><br><span class="line">    Home: HomeScreen,</span><br><span class="line">    Details: DetailsScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    initialRouteName: &apos;Home&apos;,</span><br><span class="line">    /* The header config from HomeScreen is now here */</span><br><span class="line">    navigationOptions: &#123;</span><br><span class="line">      headerStyle: &#123;</span><br><span class="line">        backgroundColor: &apos;#f4511e&apos;,</span><br><span class="line">      &#125;,</span><br><span class="line">      headerTintColor: &apos;#fff&apos;,</span><br><span class="line">      headerTitleStyle: &#123;</span><br><span class="line">        fontWeight: &apos;bold&apos;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>按照以上的配置，所有在RootStack配置的页面，都会共享navigationOptions配置的样式。那我们能否替换共享的navigationOptions属性呢？</p>
-<h3 id="覆盖共享的navigationOptions"><a href="#覆盖共享的navigationOptions" class="headerlink" title="覆盖共享的navigationOptions"></a>覆盖共享的navigationOptions</h3><p>当页面组件上指定的navigationOptions属性与其父堆栈导航器的navigationOptions属性相同时，页面组件上的选项会决定最终的效果。 让我们使用这些知识来反转细节屏幕上的背景和色调。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = (&#123; navigation, navigationOptions &#125;) =&gt; &#123;</span><br><span class="line">    const &#123; params &#125; = navigation.state;</span><br><span class="line"></span><br><span class="line">    return &#123;</span><br><span class="line">      title: params ? params.otherParam : &apos;A Nested Details Screen&apos;,</span><br><span class="line">      /* These values are used instead of the shared configuration! */</span><br><span class="line">      headerStyle: &#123;</span><br><span class="line">        backgroundColor: navigationOptions.headerTintColor,</span><br><span class="line">      &#125;,</span><br><span class="line">      headerTintColor: navigationOptions.headerStyle.backgroundColor,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用自定义组件替换默认标题"><a href="#使用自定义组件替换默认标题" class="headerlink" title="使用自定义组件替换默认标题"></a>使用自定义组件替换默认标题</h3><p>有时你不仅仅是希望更改标题的文本和样式，而是其他更多的变化 - 例如，你可能希望渲染图像代替标题，或将标题设置为按钮。 在这些情况下，您可以使用自定义组件完全覆盖默认显示标题的组件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class LogoTitle extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;Image</span><br><span class="line">        source=&#123;require(&apos;./spiro.png&apos;)&#125;</span><br><span class="line">        style=&#123;&#123; width: 30, height: 30 &#125;&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    // headerTitle instead of title</span><br><span class="line">    headerTitle: &lt;LogoTitle /&gt;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function, etc */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
+                <a href="/categories/React Navigation">
+                  <b>「 </b>REACT NAVIGATION<b> 」</b>
+                </a>
             
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-【React-Navigation】四、页面的参数传递"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
+            August 29, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/29/【React-Navigation】六、标题栏按钮/" title="【React Navigation】六、标题栏按钮" class="posttitle">【React Navigation】六、标题栏按钮</a></h3>
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】四、页面的参数传递/">【React Navigation】四、页面的参数传递</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】四、页面的参数传递/" class="article-date">
-	  <time datetime="2018-08-29T06:03:44.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        4.7k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <h3 id="在标题栏增加按钮"><a href="#在标题栏增加按钮" class="headerlink" title="在标题栏增加按钮"></a>在标题栏增加按钮</h3><p>与标题交互的最常用方法是点击标题左侧或右侧的按钮。 让我们在标题的右侧添加一个按钮（在整个屏幕上最难触摸的地方之一，取决于手指和手机大小，但也是放置按钮的正常位置）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    headerTitle: &lt;LogoTitle /&gt;,</span><br><span class="line">    headerRight: (</span><br><span class="line">      &lt;Button</span><br><span class="line">        onPress...</span></pre></td></tr></table></figure>
+            
+            <span class="read-more"><a href="/2018/08/29/【React-Navigation】六、标题栏按钮/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在前边几个环节，我们学会了如何创建一个包含多个页面的导航器，并且学习了如何在页面间跳转的方法。接下来，我们将在这个环节学习如何在跳转页面时，同时附带参数。这主要有两个步骤：</p>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React Navigation">
+                  <b>「 </b>REACT NAVIGATION<b> 」</b>
+                </a>
+            
+            August 29, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/29/【React-Navigation】五、配置标题栏/" title="【React Navigation】五、配置标题栏" class="posttitle">【React Navigation】五、配置标题栏</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        13k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        12 mins.
+                    </span>
+                
+                
+            </p>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <h3 id="设置标题栏标题"><a href="#设置标题栏标题" class="headerlink" title="设置标题栏标题"></a>设置标题栏标题</h3><p>屏幕组件可以包含一个名为navigationOptions 的静态属性，它既是一个对象也是一个方法，里边包含了各种的属性配置。我们可以通过它里边的title属性来设置标题栏标题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  static navigationOptions = &#123;</span><br><span class="line">    title: &apos;Home&apos;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  /* render function...</span></pre></td></tr></table></figure>
+            
+            <span class="read-more"><a href="/2018/08/29/【React-Navigation】五、配置标题栏/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React Navigation">
+                  <b>「 </b>REACT NAVIGATION<b> 」</b>
+                </a>
+            
+            August 29, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/29/【React-Navigation】四、页面的参数传递/" title="【React Navigation】四、页面的参数传递" class="posttitle">【React Navigation】四、页面的参数传递</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        6.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        6 mins.
+                    </span>
+                
+                
+            </p>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <p>在前边几个环节，我们学会了如何创建一个包含多个页面的导航器，并且学习了如何在页面间跳转的方法。接下来，我们将在这个环节学习如何在跳转页面时，同时附带参数。这主要有两个步骤：</p>
 <ol>
 <li><p>将多个参数封装成一个对象，并将它作为navigate函数的第二个参数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.props.navigation.navigate(&apos;RouteName&apos;, &#123; /* params go here */ &#125;)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在屏幕组件中读取相应的参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.props.navigation.getParam(paramName, defaultValue)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>以下是完整的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Home Screen&lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Details&quot;</span><br><span class="line">          onPress=&#123;() =&gt; &#123;</span><br><span class="line">            /* 1. Navigate to the Details route with params */</span><br><span class="line">            this.props.navigation.navigate(&apos;Details&apos;, &#123;</span><br><span class="line">              itemId: 86,</span><br><span class="line">              otherParam: &apos;anything you want here&apos;,</span><br><span class="line">            &#125;);</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    /* 2. Get the param, provide a fallback value if not available */</span><br><span class="line">    const &#123; navigation &#125; = this.props;</span><br><span class="line">    const itemId = navigation.getParam(&apos;itemId&apos;, &apos;NO-ID&apos;);</span><br><span class="line">    const otherParam = navigation.getParam(&apos;otherParam&apos;, &apos;some default value&apos;);</span><br><span class="line"></span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Details Screen&lt;/Text&gt;</span><br><span class="line">        &lt;Text&gt;itemId: &#123;JSON.stringify(itemId)&#125;&lt;/Text&gt;</span><br><span class="line">        &lt;Text&gt;otherParam: &#123;JSON.stringify(otherParam)&#125;&lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Details... again&quot;</span><br><span class="line">          onPress=&#123;() =&gt;</span><br><span class="line">            this.props.navigation.push(&apos;Details&apos;, &#123;</span><br><span class="line">              itemId: Math.floor(Math.random() * 100),</span><br><span class="line">            &#125;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Home&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Home&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go back&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.goBack()&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><em>重点：</em></p>
-<p><em>1. 你也可以直接使用this.props.navigation.state.params来获取参数，但由于参数有可能为null，因此你需要进行额外的判断。例如：this.props.navigation.state.params.itemId</em></p>
-<p><em>假如你希望直接this.props.itemId来获取页面传递的属性，而不是this.props.navigation.getParam这么复杂的写法，则可以使用社区开源的react-navigation-props-mapper包</em></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.props.navigation...</span></pre></td></tr></table></figure></li></ol>
             
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-【React-Navigation】三、屏幕切换"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】三、屏幕切换/">【React Navigation】三、屏幕切换</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】三、屏幕切换/" class="article-date">
-	  <time datetime="2018-08-29T06:02:52.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
+            <span class="read-more"><a href="/2018/08/29/【React-Navigation】四、页面的参数传递/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在上一个环节中，我们定义了一个包含了两个路由的堆栈导航器，但我们还没有实现让导航器从Home路由跳转到Details路由。（虽然我们确实学习了如何在我们的代码中更改初始路由，但是为了看到另外一个路由，需要我们的用户在代码中更改初始路由，这是一种糟糕的用户体验）</p>
-<p>假如是浏览器，我们可以通过以下写法来达到页面跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;details.html&quot;&gt;Go to Details&lt;/a&gt;</span><br><span class="line">或者</span><br><span class="line">&lt;a onClick=&#123;() =&gt; &#123; document.location.href = &quot;details.html&quot;; &#125;&#125;&gt;Go to Details&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
-<p>接下来我们将通过navigation的属性来实现导航器的页面跳转</p>
-<h3 id="导航到新页面"><a href="#导航到新页面" class="headerlink" title="导航到新页面"></a>导航到新页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; Button, View, Text &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; createStackNavigator &#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Home Screen&lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Details&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Details&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// ... other code from the previous section</span><br></pre></td></tr></table></figure>
-<p>重点：</p>
-<ol>
-<li>this.props.navigation：navigation属性将被传递到每个在堆栈导航器中定义的屏幕组件中</li>
-<li>navigate(‘Details’)：通过调用navigate方法，并传入我们想跳转的页面名称来实现指定的页面跳转</li>
-</ol>
-<p><em>假如navigate中传入的页面名称没有在堆栈导航器中定义，则不会执行任何操作。另外，我们只能跳转到堆栈导航器中定义的页面去</em></p>
-<p>假如我们从Details页面再一次跳转到Details界面会发生什么情况呢？</p>
-<h3 id="多次跳转到同一个页面"><a href="#多次跳转到同一个页面" class="headerlink" title="多次跳转到同一个页面"></a>多次跳转到同一个页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Details Screen&lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Details... again&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Details&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行该代码，我们可以发现，页面不会产生变化。假如我们当前已经跳转到指定的页面，则再一次调用navigate跳转到该页面，不会产生任何的效果。</p>
-<p>假如我们真的有这样的需求呢？我们可以使用push函数来替换原有的navigate函数，该函数允许我们创建一个新的路由线路而忽略原来的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">  title=&quot;Go to Details... again&quot;</span><br><span class="line">  onPress=&#123;() =&gt; this.props.navigation.push(&apos;Details&apos;)&#125;</span><br><span class="line">/&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="页面回退"><a href="#页面回退" class="headerlink" title="页面回退"></a>页面回退</h3><p>堆栈导航器提供的标题栏会自动包含一个后退按钮，它允许我们返回到上一个页面（如果堆栈导航器只有一个屏幕，则没有任何内容可以返回，因此没有返回键）。</p>
-<p>有时你希望能够以编程方式触发此行为，可以使用this.props.navigation.goBack（）函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Details Screen&lt;/Text&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Details... again&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.push(&apos;Details&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go to Home&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.navigate(&apos;Home&apos;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">          title=&quot;Go back&quot;</span><br><span class="line">          onPress=&#123;() =&gt; this.props.navigation.goBack()&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还有另外一些常见的需求：能够直接返回到前几个页面去。例如，你已经跳转了好几层页面(A-&gt;B-&gt;C-&gt;D)，现在想要直接返回到A，可以直接使用navigate(‘A’)。或者使用navigation.popToTop()，它返回到堆栈中的第一个页面(A)</p>
+</div>
 
-      
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
     </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
+    <div class="else">
+        <p class="animated fadeInDown">
             
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-【React-Navigation】二、createStackNavigator-堆栈导航器"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】二、createStackNavigator-堆栈导航器/">【React Navigation】二、createStackNavigator-堆栈导航器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】二、createStackNavigator-堆栈导航器/" class="article-date">
-	  <time datetime="2018-08-29T06:01:43.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在Web浏览器中，你可以通过（<a>）标签跳转到不同的页面。当用户单击某个链接时，当前的URL将保存到到浏览器历史记录堆栈。当用户按下后退按钮时，浏览器会从历史堆栈的顶部弹出上一个访问的URL，因此可以切换回到先前访问过的页面。 React Native没有像Web浏览器那样内置全局历史堆栈的功能。</a></p>
-<p>而React Navigation则为您的应用提供了一种在屏幕切换和管理导航历史记录的方法。如果您的应用程序仅使用一个堆栈导航器，那么它在概念上类似于Web浏览器处理导航状态的方式 - 当用户与其交互时，您的应用程序会从导航堆栈中推送和弹出项目，这会导致用户看到不同的屏幕。但Web浏览器和React Navigation的主要区别在于：在切换不同的页面时，React Navigation的堆栈导航器实现了类似于原生（Android和iOS）的手势交互和动画效果。</p>
-<p>我们首先从React Navigation中一个名为createStackNavigator的函数开始着手。</p>
-<h3 id="创建一个堆栈导航器"><a href="#创建一个堆栈导航器" class="headerlink" title="创建一个堆栈导航器"></a>创建一个堆栈导航器</h3><p>因为createStackNavigator函数会返回一个React组件，我们可以直接App.js中使用它作为App的根组件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// In App.js in a new project</span><br><span class="line">// 在App.js中替换以上代码，然后运行</span><br><span class="line"></span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; View, Text &#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; createStackNavigator &#125; from &apos;react-navigation&apos;;</span><br><span class="line"></span><br><span class="line">class HomeScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Home Screen&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default createStackNavigator(&#123;</span><br><span class="line">  Home: &#123;</span><br><span class="line">    screen: HomeScreen</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>当运行该程序，你可以看到整个页面中包含了一个空的导航条和一个包含了HomeScreen组件的灰色内容区域。这是堆栈导航器的默认风格，稍后的章节我们会学习如何去配置这些风格和样式。</p>
-<p><em>重点：</em><br><em>1. 路由名称不区分大小写</em><br><em>2. 每个路由必须配置screen组件</em></p>
-<p>我们还可以使用createStackNavigator函数将堆栈导航器保存成一个RootStack组件，作为我们的App.js中的跟组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const RootStack = createStackNavigator(&#123;</span><br><span class="line">  Home: &#123;</span><br><span class="line">    screen: HomeScreen</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;RootStack /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="路由的快速配置"><a href="#路由的快速配置" class="headerlink" title="路由的快速配置"></a>路由的快速配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 可以省略大括号</span><br><span class="line">const RootStack = createStackNavigator(&#123;</span><br><span class="line">  Home: HomeScreen</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="增加第二个路由"><a href="#增加第二个路由" class="headerlink" title="增加第二个路由"></a>增加第二个路由</h3><p><rootstack>组件没有配置其他的属性 - 所有配置都在createStackNavigator函数的options参数中指定。 我们将选项留空，因此它只使用默认配置。 为了查看使用options对象的示例，我们将向堆栈导航器添加第二个屏幕。</rootstack></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// Other code for HomeScreen here...</span><br><span class="line"></span><br><span class="line">class DetailsScreen extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;&#123; flex: 1, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; &#125;&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Details Screen&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const RootStack = createStackNavigator(</span><br><span class="line">  &#123;</span><br><span class="line">    Home: HomeScreen,</span><br><span class="line">    Details: DetailsScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    initialRouteName: &apos;Home&apos;,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">// Other code for App component here...</span><br></pre></td></tr></table></figure>
-<p>现在导航器包含了两个路由：Home路由与HomeScreen组件关联，Details路由与DetailsScreen组件关联。我们使用Home路由作为程序初始化的路由。</p>
-<p>这时我们会自然想到一个问题：怎么从Home路由跳转到Details路由呢？我们将在下一个环节介绍。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>React Native没有提供像Web浏览器那样的内置导航API。 而React Navigation则为你提供了该功能，你甚至还可以使用它来实现iOS和Android平台的手势切换交互以及屏幕转换的动画。</li>
-<li>createStacknavigator函数允许你通过配置路由以及其他的属性，并返回一个React组件</li>
-<li>路由配置对象中的键是路由名称，值是该路由的配置。 配置中唯一需要的属性是屏幕（用于路径的组件）。</li>
-<li>可以使用initialRouteName来指定堆栈导航器中的初始路由</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
+                <a href="/categories/React Navigation">
+                  <b>「 </b>REACT NAVIGATION<b> 」</b>
+                </a>
             
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-【React-Navigation】一、环境配置"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
+            August 29, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/29/【React-Navigation】三、屏幕切换/" title="【React Navigation】三、屏幕切换" class="posttitle">【React Navigation】三、屏幕切换</a></h3>
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/29/【React-Navigation】一、环境配置/">【React Navigation】一、环境配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/29/【React-Navigation】一、环境配置/" class="article-date">
-	  <time datetime="2018-08-29T05:56:53.000Z" itemprop="datePublished">August 29, 2018</time>
-	</a>
-
-      
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        7.8k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <p>在上一个环节中，我们定义了一个包含了两个路由的堆栈导航器，但我们还没有实现让导航器从Home路由跳转到Details路由。（虽然我们确实学习了如何在我们的代码中更改初始路由，但是为了看到另外一个路由，需要我们的用户在代码中更改初始路由，这是一种糟糕的用户体验）</p>
+<p>假如是浏览器，我们可以通过以下写法来达到页面跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;details.html&quot;&gt;Go to Details&lt;/a&gt;</span><br><span class="line">或者</span><br><span class="line">&lt;a onClick=&#123;() =&gt;...</span></pre></td></tr></table></figure></p>
+            
+            <span class="read-more"><a href="/2018/08/29/【React-Navigation】三、屏幕切换/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>React Navigation是一个产生于React Native开源社区的导航解决方案，它允许用户使用纯JavaScript语言开发一个可扩展且易于使用的导航栏。</p>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React Navigation">
+                  <b>「 </b>REACT NAVIGATION<b> 」</b>
+                </a>
+            
+            August 29, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/29/【React-Navigation】二、createStackNavigator-堆栈导航器/" title="【React Navigation】二、createStackNavigator-堆栈导航器" class="posttitle">【React Navigation】二、createStackNavigator-堆栈导航器</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        7.4k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <p>在Web浏览器中，你可以通过（<a>）标签跳转到不同的页面。当用户单击某个链接时，当前的URL将保存到到浏览器历史记录堆栈。当用户按下后退按钮时，浏览器会从历史堆栈的顶部弹出上一个访问的URL，因此可以切换回到先前访问过的页面。 React Native没有像Web浏览器那样内置全局历史堆栈的功能。</a></p>
+<p>而React Navigation则为您的应用提供了一种在屏幕切换和管理导航历史记录的方法。如果您的应用程序仅使用一个堆栈导航器，那么它在概念上类似于Web浏览器处理导航状态的方式 - 当用户与其交互时，...</p>
+            
+            <span class="read-more"><a href="/2018/08/29/【React-Navigation】二、createStackNavigator-堆栈导航器/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React Navigation">
+                  <b>「 </b>REACT NAVIGATION<b> 」</b>
+                </a>
+            
+            August 29, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/29/【React-Navigation】一、环境配置/" title="【React Navigation】一、环境配置" class="posttitle">【React Navigation】一、环境配置</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        1.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <p>React Navigation是一个产生于React Native开源社区的导航解决方案，它允许用户使用纯JavaScript语言开发一个可扩展且易于使用的导航栏。</p>
 <h3 id="期望"><a href="#期望" class="headerlink" title="期望"></a>期望</h3><p>如果您已经熟悉React Native，那么您将能够快速使用React Navigation！否则，您可能需要首先阅读React Native Express的第1至4部分，然后再开始该部分内容的学习。</p>
-<p>本文档的基础部分主要是对React Navigation最重要的知识点进行介绍。 阅读完该文档，可以让您了解如何构建典型的小型移动应用程序，并为您提供深入了解React Navigation更高级部分所需的背景知识。</p>
-<h3 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 安装react-navigation，在项目的根目录执行以下命令</span><br><span class="line"></span><br><span class="line">// 使用yarn安装</span><br><span class="line">yarn add react-navigation</span><br><span class="line">// 使用npm安装</span><br><span class="line">npm install --save react-navigation</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
+<p>本文档的基础部分主要是对React Navigation最重要的知识点进行介绍。 阅读完该文档，可以让您了解如何构建典型的小...</p>
             
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-【React-Navigation】写在前边"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/25/【React-Navigation】写在前边/">【React Navigation】写在前边</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/08/25/【React-Navigation】写在前边/" class="article-date">
-	  <time datetime="2018-08-25T06:24:55.000Z" itemprop="datePublished">August 25, 2018</time>
-	</a>
-
-      
+            <span class="read-more"><a href="/2018/08/29/【React-Navigation】一、环境配置/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>该系列文章翻译自<a href="https://reactnavigation.org/docs/en/getting-started.html" target="_blank" rel="noopener">React Navigation官方文档</a>：</p>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React Navigation">
+                  <b>「 </b>REACT NAVIGATION<b> 」</b>
+                </a>
+            
+            August 25, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/25/【React-Navigation】写在前边/" title="【React Navigation】写在前边" class="posttitle">【React Navigation】写在前边</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        449
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>该系列文章翻译自<a href="https://reactnavigation.org/docs/en/getting-started.html" target="_blank" rel="noopener">React Navigation官方文档</a>：</p>
 <ol>
 <li>目前没有翻译全部篇章，只是挑选了本人认为比较重要的文章</li>
 <li>在原有的基础上加上了自己的理解</li>
@@ -602,322 +538,230 @@ var themeMenus = {};
 </ol>
 <h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>后续将补全所有的文章，并附上使用了React Navigation的完整例子。如果翻译不妥当，或者语句不顺，欢迎各位指正~</p>
 
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/reactnavigation/">React Navigation</a>
-
-      
-      
             
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
-</section>
-          <aside id="sidebar">
-  
-    <div class="widget-wrap" style="margin: 20px 0;">
-	<div id="search-form-wrap">
-
-    <form class="search-form">
-        <label style="width: 75%;">
-            <span class="screen-reader-text">Search for:</span>
-            <input type="search" class="search-field" style="height: 42px;" placeholder=" Search…" value="" name="s" title="Search for:">
-        </label>
-        <input type="submit" class="search-form-submit" value="Search">
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
+            <span class="read-more"><a href="/2018/08/25/【React-Navigation】写在前边/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
 
+
+    </div>
+    
 </div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Connect With Us</h3>
-    <div class="widget widget_athemes_social_icons">
+<div id="preview"></div>
 
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/wenjinzhu" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>Recent Posts</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/03/26/【QT】qt5.9解析和构建Json字符串/">【QT】qt5.9解析和构建Json字符串</a></h6>
-              <span>March 26, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/03/18/【QT】使用vld进行内存泄漏检测/">【QT】使用vld进行内存泄漏检测</a></h6>
-              <span>March 18, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/16/【QT】多线程-实现多线程的几种方式/">【QT】多线程 -- 实现多线程的几种方式</a></h6>
-              <span>January 16, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/16/【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例/">【QT】进程间通信 -- 使用命名管道实现qt应用程序只运行一个实例</a></h6>
-              <span>January 16, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/">【QT】进程间通信 -- 字节数组与int之间的转换</a></h6>
-              <span>January 15, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-粘包，拆包/">【QT】进程间通信 -- 粘包，拆包</a></h6>
-              <span>January 15, 2020</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2020 King的技术小栈 All Rights Reserved.
-          
-            <span id="busuanzi_container_site_uv">
-              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
-              本站总访问量<span id="busuanzi_value_site_pv"></span>次
-            </span>
-          
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
-      </div>
-  </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2020
+        <span class="gradient-text">
+            King
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.3" target="_blank" rel="noopener">v1.4.3</a></small>
+    </p>
 </footer>
 
-
-<!-- min height -->
-
-<script>
-    var contentdiv = document.getElementById("content");
-
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
-<!-- Custome JS -->
-<script src="/js/my.js"></script>
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav> -->
-    
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
+<script>
   MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
     tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
   });
 </script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
       }
     });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
 </script>
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+    <script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+
+
+
+    <script src="/js/busuanzi.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="//www.googletagmanager.com/gtag/js?id=UA-149874671-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149874671-1');
+    </script>
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
         }
-    });
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/scripts.js"></script>
-<script src="/js/bootstrap.js"></script>
-<script src="/js/main.js"></script>
-
-
-
-
-
-
-
-  <div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js" async=""></script>
-</body>
 </html>

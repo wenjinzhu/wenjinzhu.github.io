@@ -1,676 +1,795 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="" class="loading">
 <head>
-  <meta charset="utf-8">
-
-  <!-- PACE Progress Bar START -->
-  
-    <script src="/js/pace.min.js"></script>
-    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
-  
-  
-
-  <!-- PACE Progress Bar START -->
-
-  
-  <title>archives: 2018 | King的技术小栈</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  
-  
-  
-  <meta name="description" content="勤靡余劳，心有常闲">
-<meta property="og:type" content="website">
-<meta property="og:title" content="King的技术小栈">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
-<meta property="og:site_name" content="King的技术小栈">
-<meta property="og:description" content="勤靡余劳，心有常闲">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="King的技术小栈">
-<meta name="twitter:description" content="勤靡余劳，心有常闲">
-  
-    <link rel="alternate" href="/atom.xml" title="King的技术小栈" type="application/atom+xml">
-  
-  <link rel="icon" href="/css/images/logo.jpg">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-    
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <script src="/js/jquery-3.1.1.min.js"></script>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.css" >
-  <link rel="stylesheet" href="/css/hiero.css" >
-  <link rel="stylesheet" href="/css/glyphs.css" >
-  
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="/css/my.css">
-  <!-- Google Adsense -->
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-0123456789ABCDEF",
-          enable_page_level_ads: true
-      });
-  </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Archive: 2018</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="description" content="勤靡余劳，心有常闲,"> 
+    <meta name="author" content="King"> 
+    <link rel="alternative" href="atom.xml" title="King的技术小栈" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link href="https://fonts.loli.net/css?family=Roboto+Mono|Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+    <link rel="stylesheet" href="/css/obsidian.css">
+    <link rel="stylesheet" href="/css/ball-atom.min.css">
 </head>
 
-<script>
-var themeMenus = {};
 
-  themeMenus["/"] = "Home"; 
-
-  themeMenus["/archives"] = "Archives"; 
-
-</script>
-
-
-  <body>
-
-
-  <header id="allheader" class="site-header" role="banner">
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/" rel="home" >
-                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src=" /css/images/logo.jpg">
-              </a>
-            
-          </h1>
-
-          
-            <div class="site-description">勤靡余劳，心有常闲</div>
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-            <div class="clearfix sf-menu">
-
-              <ul id="main-nav" class="nmenu sf-js-enabled">
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
-                    
-              </ul>
-            </div>
-          </nav>
-
-
-      </div>
-  </div>
-</header>
-
-
-  <div id="originBgDiv" style="background: #fff; width: 100%;">
-
-      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
-        <img id="originBg" width="100%" alt="" src="">
-      </div>
-
-  </div>
-
-  <script>
-  function setAboutIMG(){
-      var imgUrls = "css/images/logo.jpg,css/images/background-cover.jpg".split(",");
-      var random = Math.floor((Math.random() * imgUrls.length ));
-      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-        document.getElementById("originBg").src=imgUrls[random];
-      } else {
-        document.getElementById("originBg").src='/' + imgUrls[random];
-      }
-  }
-  bgDiv=document.getElementById("originBgDiv");
-  if(location.pathname.match('about')){
-    setAboutIMG();
-    bgDiv.style.display='block';
-  }else{
-    bgDiv.style.display='none';
-  }
-  </script>
-
-
-
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
-        
-          <section id="main">
-  <div class="archives-tags-wrap"><blockquote><span>There are 28 posts in total till now.</span></blockquote>
-
-
-
-
-	<!-- 分页显示 -->
-	
-	
-		
-		
-		  
-		  
-		  <section class="archives-wrap">
-		    <div class="archive-year-wrap">
-		      <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
-		    </div>
-		    <div class="archives">
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/09/07/【React-Native】一、原生UI组件/" class="archive-article-date">
-		  <time datetime="2018-09-07T12:33:03.000Z" itemprop="datePublished">Sep 07, 2018</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/09/07/【React-Native】一、原生UI组件/">【React Native】一、原生UI组件</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/08/29/【React-Navigation】完整例子/" class="archive-article-date">
-		  <time datetime="2018-08-29T06:54:07.000Z" itemprop="datePublished">Aug 29, 2018</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/08/29/【React-Navigation】完整例子/">【React Navigation】完整例子</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/08/29/【React-Navigation】十三、在任意组件中使用navigation属性/" class="archive-article-date">
-		  <time datetime="2018-08-29T06:11:27.000Z" itemprop="datePublished">Aug 29, 2018</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/08/29/【React-Navigation】十三、在任意组件中使用navigation属性/">【React Navigation】十三、在任意组件中使用navigation属性</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/08/29/【React-Navigation】十二、自定义Android返回键的行为/" class="archive-article-date">
-		  <time datetime="2018-08-29T06:10:32.000Z" itemprop="datePublished">Aug 29, 2018</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/08/29/【React-Navigation】十二、自定义Android返回键的行为/">【React Navigation】十二、自定义Android返回键的行为</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/08/29/【React-Navigation】十一、导航器嵌套使用的一些注意事项/" class="archive-article-date">
-		  <time datetime="2018-08-29T06:09:34.000Z" itemprop="datePublished">Aug 29, 2018</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/08/29/【React-Navigation】十一、导航器嵌套使用的一些注意事项/">【React Navigation】十一、导航器嵌套使用的一些注意事项</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/08/29/【React-Navigation】十、沉浸式状态栏/" class="archive-article-date">
-		  <time datetime="2018-08-29T06:08:50.000Z" itemprop="datePublished">Aug 29, 2018</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/08/29/【React-Navigation】十、沉浸式状态栏/">【React Navigation】十、沉浸式状态栏</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/08/29/【React-Navigation】九、createSwitchNavigator-身份认证流程/" class="archive-article-date">
-		  <time datetime="2018-08-29T06:07:48.000Z" itemprop="datePublished">Aug 29, 2018</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/08/29/【React-Navigation】九、createSwitchNavigator-身份认证流程/">【React Navigation】九、createSwitchNavigator-身份认证流程</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/08/29/【React-Navigation】八、createDrawerNavigator-抽屉导航器/" class="archive-article-date">
-		  <time datetime="2018-08-29T06:07:01.000Z" itemprop="datePublished">Aug 29, 2018</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/08/29/【React-Navigation】八、createDrawerNavigator-抽屉导航器/">【React Navigation】八、createDrawerNavigator-抽屉导航器</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/08/29/【React-Navigation】七、createTabNavigator-选项卡导航器/" class="archive-article-date">
-		  <time datetime="2018-08-29T06:06:19.000Z" itemprop="datePublished">Aug 29, 2018</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/08/29/【React-Navigation】七、createTabNavigator-选项卡导航器/">【React Navigation】七、createTabNavigator-选项卡导航器</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/08/29/【React-Navigation】六、标题栏按钮/" class="archive-article-date">
-		  <time datetime="2018-08-29T06:05:33.000Z" itemprop="datePublished">Aug 29, 2018</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/08/29/【React-Navigation】六、标题栏按钮/">【React Navigation】六、标题栏按钮</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-	
-	
-		</div></section>
-	
-
-	<!-- 页数指示器 -->
-	
-	  <nav id="page-nav">
-	    
-	    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/page/2/">Next</a>
-	  </nav>
-	
-
-
-
-</section>
-          <aside id="sidebar">
-  
-    <div class="widget-wrap" style="margin: 20px 0;">
-	<div id="search-form-wrap">
-
-    <form class="search-form">
-        <label style="width: 75%;">
-            <span class="screen-reader-text">Search for:</span>
-            <input type="search" class="search-field" style="height: 42px;" placeholder=" Search…" value="" name="s" title="Search for:">
-        </label>
-        <input type="submit" class="search-form-submit" value="Search">
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
+    <span id="config-title" style="display:none">King的技术小栈</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="dark-obsidian section">
+        <div class="article animated fadeIn">
+            <div class="main">
+                <div class="content animated fadeIn">
+                    <div class="set">
+                        <h1 style="text-align: center">Archived</h1>
+                        <p style="text-align: center">「 28 」</p>
+                        <ul class="timeline timeline-centered">
+                            
+                            
+                                
+                                <li class="timeline-item period">
+                                    <div class="timeline-info"></div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h2 class="timeline-title">March 2020</h2>
+                                    </div>
+                                </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">March 26, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/03/26/【QT】qt5.9解析和构建Json字符串/">【QT】qt5.9解析和构建Json字符串</a>
+                                        <p>
+                                            前言QT5开始新增加几个相关类，专门用于处理JSON：
+
+QJsonDocument：provides a way to read and write JSON documents，用于读写json格式的文档
+QJsonArray：encapsulates a JSON array，封装json数组
+QJsonObject：encapsulates a JSON object，封装json对...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">March 18, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/03/18/【QT】使用vld进行内存泄漏检测/">【QT】使用vld进行内存泄漏检测</a>
+                                        <p>
+                                            前言通过官网，我们可以了解到Visual Leak Detector（VLD）是一款用于Visual C++的免费的内存泄露检测工具，它有几个优点：
+
+为每个泄漏的块提供完整的堆栈跟踪，包括可用的源文件和行号信息。
+检测大多数（如果不是全部）进程内内存泄漏类型，包括基于COM的泄漏和基于Win32 / Win64堆的纯泄漏
+所选模块（DLL或什至是主EXE）可以从泄漏检测中排除
+提供泄漏块的...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item period">
+                                    <div class="timeline-info"></div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h2 class="timeline-title">January 2020</h2>
+                                    </div>
+                                </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 16, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/16/【QT】多线程-实现多线程的几种方式/">【QT】多线程 -- 实现多线程的几种方式</a>
+                                        <p>
+                                            前言假如将一些耗时操作放在UI线程处理，会导致UI卡顿，影响用户使用体验。因此，我们通常会将耗时操作放在新的线程中处理。这就涉及到线程的使用。在qt中，有几种方式启动多线程：
+
+继承QThread，重新实现run()函数
+使用QObject::moveToThread()函数
+使用QtConcurrent模块
+
+具体实现123456789101112131415161718192021222...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 16, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/16/【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例/">【QT】进程间通信 -- 使用命名管道实现qt应用程序只运行一个实例</a>
+                                        <p>
+                                            前言在项目中，会遇到这么一个需求，应用程序只能存在一个运行实例。关于这需求，网上流行几种实现方式：
+
+通过QSharedMemory实现
+使用官方提供的QTSingleApplication
+使用QLocalServer和QLocalSocket
+
+本文章主要介绍第三种方式
+实现思路
+继承QApplicaiton或者QCoreApplication自定义一个SingleApplication...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 15, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/">【QT】进程间通信 -- 字节数组与int之间的转换</a>
+                                        <p>
+                                            前言在上一篇粘包的文章中提到，解决粘包的一种方式是，自定义消息，在消息头中增加包总长度的信息。不管tcp还是命名管道，都是以字节流的方式传递给接收者的。在解包的过程中，需要将头部的总长度信息提取出来，这就涉及到字节数字与int之间的转换。
+另外，在不同的操作系统、处理器，数据的存储还有大小端之分：高位在前低位在后，低位在前高位在后。因此需要提供两种转换模式
+具体代码1234567891011...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 15, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/15/【QT】进程间通信-粘包，拆包/">【QT】进程间通信 -- 粘包，拆包</a>
+                                        <p>
+                                            前言不管是走命名管道还是TCP/IP的方式，都会有粘包的问题发生。粘包的产生的原因可以这么理解：客户端与服务器维持一个长连接，在连接不断开的情况下，可以持续不断地进行数据的交互。一个完整的包可能被TCP拆分为多个包进行发送，也可能把多个小包封装成一个大的数据包进行发送。
+粘包的情况有几种：
+
+收到一个完整的包，没有粘包
+收到一个完整的包和下一个包的一部分
+收到上一个包的一部分和下一个完整的包...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 15, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/15/【QT】进程间通信-TCP-IP/">【QT】进程间通信 -- TCP/IP</a>
+                                        <p>
+                                            前言在上一篇文章中，主要介绍了命名管道的使用。除了命名管道外，其实TCP/IP也是进程间通信的常用技术。在qt中，主要是使用QTcpServer和QTcpSocket来实现的。
+步骤大致的步骤跟命名管道是一致的，不同的是，命名管道在监听和连接时，使用a specified key，而tcp/ip需要指定ip地址和port端口
+具体代码12345// 1. 服务端listen(const QH...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 15, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/15/【QT】进程间通信-QLocalServer-QLocalSocket（命名管道）/">【QT】进程间通信 -- QLocalServer/QLocalSocket（命名管道）</a>
+                                        <p>
+                                            前言现在在逐步将项目中的功能块，这样子可以针对不同用户需求，灵活启用或卸载部分功能。目前，我们采用的方案是将功能打包成独立的exe，在启用时通过进程间通信进行交互。这里就涉及到进程间通信的技术，常用的技术有几种：
+
+TCP/IP
+共享内存
+QProcess
+命名管道这里主要介绍命名管道的使用
+
+步骤QLocalServer（服务端）
+
+创建QLocalServer
+调用server的list...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 15, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/15/【QT】全局换肤/">【QT】全局换肤</a>
+                                        <p>
+                                            前言给控件设置样式的方式常用的有两种：
+
+在 QT Designer 中，选中需要设置样式的控件，右键–&gt;改变样式表，即可以给控件设置样式
+另外一种是在代码中动态设置，调用控件的setStyleSheet函数，为控件设置样式这两种方式都是针对单个控件的，假如需要对整个应用进行换肤呢？这时候可以使用.qss为后缀的文件进行统一设置
+
+步骤
+创建.qss文件
+将需要实现换肤功能的控件的样式...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 15, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/15/【QT】动态监测U盘插拔/">【QT】动态监测U盘插拔</a>
+                                        <p>
+                                            前言在项目中，遇到一个需求：需要动态监测U盘插入，自动读取U盘文件并打开。为了实现这个功能，我们可以使用RegisterDeviceNotification注册设备事件的通知，然后在程序中处理WM_DEVICECHANGE消息来实现
+步骤
+RegisterDeviceNotification注册设备事件的通知
+在QWidget中重新实现它的nativeEvent函数来接收处理WM_DEVIC...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 14, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/14/【QT】QListWidget、QScrollArea等添加触摸滚动和惯性滚动/">【QT】QListWidget、QScrollArea等添加触摸滚动和惯性滚动</a>
+                                        <p>
+                                            前言平时使用QListWidget/QScrollArea等内容视图可以滚动的控件时，一般是通过它们的滚动条来实现滚动的。在智慧课堂项目中，实施的学校使用的是一体机–window系统可触摸的大屏。当然也可以通过滚动条来拖动，但这对于习惯于手机触摸交互的用户来说，操作起来是很不友好的。因此，需要让这些控件支持触摸滚动。主要的实现方式有两种：
+
+通过自定义控件，子类化这些滚动控件，重新实现它们的...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 14, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/14/【QT】动态添加-Horizontal-Line-和-Vertical-Line/">【QT】动态添加 Horizontal Line 和 Vertical Line</a>
+                                        <p>
+                                            前言根据业务的需求，有时我们需要用到一条水平分割线或者一条垂直分割线，在Designer里边，我们可以直接拖动一个Horizontal Line/Vertical Line来实现需求。但假如需要动态添加呢？在QT Assistant里边查找QLine/Line，发现并没有满足该需求的控件。但在qss中配置分割线的样式时，发现选择器使用的是QFrame，于是去翻查QFrame的属性等，发现QF...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item period">
+                                    <div class="timeline-info"></div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h2 class="timeline-title">September 2018</h2>
+                                    </div>
+                                </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">September 07, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/09/07/【React-Native】一、原生UI组件/">【React Native】一、原生UI组件</a>
+                                        <p>
+                                            前言React Native封装了大部分最常见的组件，但有时我们需要一些特殊的组件是React Native没有提供的。该文章将细说如何在React Naitve应用程序中封装和植入已有的原生UI组件。
+步骤
+创建一个ViewManager的子类
+实现createViewInstance方法
+导出视图的属性设置器：使用@ReactProp（或@ReactPropGroup）注解
+把这个视图管...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item period">
+                                    <div class="timeline-info"></div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h2 class="timeline-title">August 2018</h2>
+                                    </div>
+                                </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】完整例子/">【React Navigation】完整例子</a>
+                                        <p>
+                                            项目介绍该项目将React Native 中文网 - 文档这部分内容浓缩为成一个android程序，方便童鞋们随时随地掏出手机学习React Native：
+
+项目包含了React Navigation的部分章节内容，可以通过该项目源码配合熟悉之前的知识
+需要打包的童鞋，可以参考章节IOS或Android
+
+项目地址ReactOne
+项目截图
+
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】十三、在任意组件中使用navigation属性/">【React Navigation】十三、在任意组件中使用navigation属性</a>
+                                        <p>
+                                            withNavigation是一个更高阶的组件，它可以将navigation属性传递给一个包装好的组件。当您无法直接将navigation传递到组件中，或者不想在深层嵌套的子项中传递它时，它将很有用。
+1234567891011import React from &apos;react&apos;;import &#123; Button &#125; from &apos;react-na...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】十二、自定义Android返回键的行为/">【React Navigation】十二、自定义Android返回键的行为</a>
+                                        <p>
+                                            在默认情况下，当用户点击返回键时，react-navigation将会返回上一级页面，或者直接退出程序（当没有上一级页面时）。这是默认的合理处理，但有些情形下我们可能希望自定义返回键的一些行为。
+假如你正在查找一种简单的处理，可以直接导出社区开源的包：react-navigation-backhandler。在接下来的小节中，我们将会介绍这个包是如何实现返回键的自定义功能的
+举个例子，在某个...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】十一、导航器嵌套使用的一些注意事项/">【React Navigation】十一、导航器嵌套使用的一些注意事项</a>
+                                        <p>
+                                            每个页面都可以配置来决定它在导航器中的呈现方式。在基础文档的配置标题栏部分，我们介绍了它的工作原理。
+在本文档中，我们将会解释当有多个导航器一起使用时它是如何工作的。看完该章节，你将学习到如何将navigationOptions放在正确的位置，并确保可以正确的配置导航器。如果你把它们放在错误的地方，有可能什么都不会发生，但也可能会发生令人困惑和意外的事情。值得庆幸的是，以下的环节理解起来相对...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】十、沉浸式状态栏/">【React Navigation】十、沉浸式状态栏</a>
+                                        <p>
+                                            堆栈导航器和抽屉导航器下的沉浸状态栏在使用堆栈导航器和抽屉导航器下实现沉浸状态栏相对比较简单，你可以直接使用由React Native提供的StatusBar组件，并设置你的配置。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】九、createSwitchNavigator-身份认证流程/">【React Navigation】九、createSwitchNavigator-身份认证流程</a>
+                                        <p>
+                                            大部分应用在用户访问与用户相关的数据或者其他一些私有内容时，需要先进行身份验证。通常，流程将如下所示：
+
+用户打开应用程序
+该应用从数据存储层加载一些身份验证的状态（例如从AsyncStorage加载）
+加载状态后，通过判断是否加载了有效的身份验证状态，来决定跳转到身份验证界面或者主应用界面
+当用户注销时，我们清除身份验证状态，并返回到身份验证界面
+
+配置我们的导航器123456789101...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】八、createDrawerNavigator-抽屉导航器/">【React Navigation】八、createDrawerNavigator-抽屉导航器</a>
+                                        <p>
+                                            12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061import React from &apos;react&apos;;import &#123; Text, View, Button, Image, StyleSh...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】七、createTabNavigator-选项卡导航器/">【React Navigation】七、createTabNavigator-选项卡导航器</a>
+                                        <p>
+                                            移动应用程序中最常见的导航风格可能是基于标签选项卡。这些选项卡可能放置在屏幕底部或标题下方。
+本指南介绍createBottomTabNavigator的使用，另外，你还可以使用createMaterialBottomTabNavigator和createMaterialTopTabNavigator为应用程序添加选项卡。
+选项卡导航条的小例子123456789101112131415161...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】六、标题栏按钮/">【React Navigation】六、标题栏按钮</a>
+                                        <p>
+                                            在标题栏增加按钮与标题交互的最常用方法是点击标题左侧或右侧的按钮。 让我们在标题的右侧添加一个按钮（在整个屏幕上最难触摸的地方之一，取决于手指和手机大小，但也是放置按钮的正常位置）。
+123456789101112class HomeScreen extends React.Component &#123;  static navigationOptions = &#123;    head...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】五、配置标题栏/">【React Navigation】五、配置标题栏</a>
+                                        <p>
+                                            设置标题栏标题屏幕组件可以包含一个名为navigationOptions 的静态属性，它既是一个对象也是一个方法，里边包含了各种的属性配置。我们可以通过它里边的title属性来设置标题栏标题
+123456789101112131415class HomeScreen extends React.Component &#123;  static navigationOptions = &#12...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】四、页面的参数传递/">【React Navigation】四、页面的参数传递</a>
+                                        <p>
+                                            在前边几个环节，我们学会了如何创建一个包含多个页面的导航器，并且学习了如何在页面间跳转的方法。接下来，我们将在这个环节学习如何在跳转页面时，同时附带参数。这主要有两个步骤：
+
+将多个参数封装成一个对象，并将它作为navigate函数的第二个参数
+1this.props.navigation.navigate(&apos;RouteName&apos;, &#123; /* params go...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】三、屏幕切换/">【React Navigation】三、屏幕切换</a>
+                                        <p>
+                                            在上一个环节中，我们定义了一个包含了两个路由的堆栈导航器，但我们还没有实现让导航器从Home路由跳转到Details路由。（虽然我们确实学习了如何在我们的代码中更改初始路由，但是为了看到另外一个路由，需要我们的用户在代码中更改初始路由，这是一种糟糕的用户体验）
+假如是浏览器，我们可以通过以下写法来达到页面跳转123&lt;a href=&quot;details.html&quot;&gt;...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】二、createStackNavigator-堆栈导航器/">【React Navigation】二、createStackNavigator-堆栈导航器</a>
+                                        <p>
+                                            在Web浏览器中，你可以通过（）标签跳转到不同的页面。当用户单击某个链接时，当前的URL将保存到到浏览器历史记录堆栈。当用户按下后退按钮时，浏览器会从历史堆栈的顶部弹出上一个访问的URL，因此可以切换回到先前访问过的页面。 React Native没有像Web浏览器那样内置全局历史堆栈的功能。
+而React Navigation则为您的应用提供了一种在屏幕切换和管理导航历史记录的方法。如果您...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 29, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/29/【React-Navigation】一、环境配置/">【React Navigation】一、环境配置</a>
+                                        <p>
+                                            React Navigation是一个产生于React Native开源社区的导航解决方案，它允许用户使用纯JavaScript语言开发一个可扩展且易于使用的导航栏。
+期望如果您已经熟悉React Native，那么您将能够快速使用React Navigation！否则，您可能需要首先阅读React Native Express的第1至4部分，然后再开始该部分内容的学习。
+本文档的基础部分主...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">August 25, 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2018/08/25/【React-Navigation】写在前边/">【React Navigation】写在前边</a>
+                                        <p>
+                                            序该系列文章翻译自React Navigation官方文档：
+
+目前没有翻译全部篇章，只是挑选了本人认为比较重要的文章
+在原有的基础上加上了自己的理解
+补全了原文提供的例子，所有代码都在本人电脑上运行测试通过
+
+后续后续将补全所有的文章，并附上使用了React Navigation的完整例子。如果翻译不妥当，或者语句不顺，欢迎各位指正~
+
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
 
-</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Connect With Us</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/wenjinzhu" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>Recent Posts</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/03/26/【QT】qt5.9解析和构建Json字符串/">【QT】qt5.9解析和构建Json字符串</a></h6>
-              <span>March 26, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/03/18/【QT】使用vld进行内存泄漏检测/">【QT】使用vld进行内存泄漏检测</a></h6>
-              <span>March 18, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/16/【QT】多线程-实现多线程的几种方式/">【QT】多线程 -- 实现多线程的几种方式</a></h6>
-              <span>January 16, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/16/【QT】进程间通信-使用命名管道实现qt应用程序只运行一个实例/">【QT】进程间通信 -- 使用命名管道实现qt应用程序只运行一个实例</a></h6>
-              <span>January 16, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-字节数组与int之间的转换/">【QT】进程间通信 -- 字节数组与int之间的转换</a></h6>
-              <span>January 15, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/01/15/【QT】进程间通信-粘包，拆包/">【QT】进程间通信 -- 粘包，拆包</a></h6>
-              <span>January 15, 2020</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnative/">React Native</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reactnavigation/">React Navigation</a><span class="category-list-count">15</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">15</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2020 King的技术小栈 All Rights Reserved.
-          
-            <span id="busuanzi_container_site_uv">
-              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
-              本站总访问量<span id="busuanzi_value_site_pv"></span>次
-            </span>
-          
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
-      </div>
-  </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2020
+        <span class="gradient-text">
+            King
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.3" target="_blank" rel="noopener">v1.4.3</a></small>
+    </p>
 </footer>
 
-
-<!-- min height -->
-
-<script>
-    var contentdiv = document.getElementById("content");
-
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
-<!-- Custome JS -->
-<script src="/js/my.js"></script>
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav> -->
-    
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
+<script>
   MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
     tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
   });
 </script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
       }
     });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
 </script>
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+    <script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+
+
+
+    <script src="/js/busuanzi.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="//www.googletagmanager.com/gtag/js?id=UA-149874671-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149874671-1');
+    </script>
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
         }
-    });
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/scripts.js"></script>
-<script src="/js/bootstrap.js"></script>
-<script src="/js/main.js"></script>
-
-
-
-
-
-
-
-  <div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js" async=""></script>
-</body>
 </html>
